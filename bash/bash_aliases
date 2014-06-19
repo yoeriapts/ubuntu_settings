@@ -1,0 +1,28 @@
+# Copt this file to ~/.bash_aliases and make your .bashrc source it (it already does)
+
+# for every day use
+alias c='clear'
+alias l='ls -l'
+alias ll='ls -al'
+alias la='ls -a'
+alias p='pwd'
+alias h='history'
+alias j='jobs'
+alias more='less'
+
+alias m='less'
+
+# Long prompt
+alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
+# short prompt
+alias sp='export PS1="\u:\W\$ "'
+
+# concatenated date
+alias mydate='date +%F-%H:%M:%S'
+
+# iptables
+alias ipt='sudo iptables'
+
+# relative cd
+CDPATH=$CDPATH:.:..:../..:../../..:../../../..:../../../../..:../../../../../..
+
