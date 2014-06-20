@@ -1,4 +1,4 @@
-# Copt this file to ~/.bash_aliases and make your .bashrc source it (it already does)
+# Copy this file to ~/.bash_aliases and make your .bashrc source it (it already does)
 
 # for every day use
 alias c='clear'
