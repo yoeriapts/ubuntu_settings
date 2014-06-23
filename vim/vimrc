@@ -1,0 +1,325 @@
+" =====================================================================================
+" VAM : Vim-Addon-Manager setup
+" =====================================================================================
+" put this line first in ~/.vimrc
+
+set nocompatible | filetype indent plugin on | syn on
+
+fun! EnsureVamIsOnDisk(plugin_root_dir)
+  " windows users may want to use http://mawercer.de/~marc/vam/index.php
+  " to fetch VAM, VAM-known-repositories and the listed plugins
+  " without having to install curl, 7-zip and git tools first
+  " -> BUG [4] (git-less installation)
+  let vam_autoload_dir = a:plugin_root_dir.'/vim-addon-manager/autoload'
+  if isdirectory(vam_autoload_dir)
+    return 1
+  else
+    if 1 == confirm("Clone VAM into ".a:plugin_root_dir."?","&Y\n&N")
+      " I'm sorry having to add this reminder. Eventually it'll pay off.
+      call confirm("Remind yourself that most plugins ship with ".
+                  \"documentation (README*, doc/*.txt). It is your ".
+                  \"first source of knowledge. If you can't find ".
+                  \"the info you're looking for in reasonable ".
+                  \"time ask maintainers to improve documentation")
+      call mkdir(a:plugin_root_dir, 'p')
+      execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.
+                  \       shellescape(a:plugin_root_dir, 1).'/vim-addon-manager'
+      " VAM runs helptags automatically when you install or update 
+      " plugins
+      exec 'helptags '.fnameescape(a:plugin_root_dir.'/vim-addon-manager/doc')
+    endif
+    return isdirectory(vam_autoload_dir)
+  endif
+endfun
+
+fun! SetupVAM()
+  " Set advanced options like this:
+  " let g:vim_addon_manager = {}
+  " let g:vim_addon_manager.key = value
+  "     Pipe all output into a buffer which gets written to disk
+  " let g:vim_addon_manager.log_to_buf =1
+
+  " Example: drop git sources unless git is in PATH. Same plugins can
+  " be installed from www.vim.org. Lookup MergeSources to get more control
+  " let g:vim_addon_manager.drop_git_sources = !executable('git')
+  " let g:vim_addon_manager.debug_activation = 1
+
+  " VAM install location:
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME/.vim/vim-addons', 1)
+  if !EnsureVamIsOnDisk(c.plugin_root_dir)
+    echohl ErrorMsg | echomsg "No VAM found!" | echohl NONE
+    return
+  endif
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+
+  " Tell VAM which plugins to fetch & load:
+  call vam#ActivateAddons(['jedi-vim'], {'auto_install' : 0})
+  " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
+  " Also See "plugins-per-line" below
+
+  " Addons are put into plugin_root_dir/plugin-name directory
+  " unless those directories exist. Then they are activated.
+  " Activating means adding addon dirs to rtp and do some additional
+  " magic
+
+  " How to find addon names?
+  " - look up source from pool
+  " - (<c-x><c-p> complete plugin names):
+  " You can use name rewritings to point to sources:
+  "    ..ActivateAddons(["github:foo", .. => github://foo/vim-addon-foo
+  "    ..ActivateAddons(["github:user/repo", .. => github://user/repo
+  " Also see section "2.2. names of addons and addon sources" in VAM's documentation
+endfun
+call SetupVAM()
+" experimental [E1]: load plugins lazily depending on filetype, See
+" NOTES
+" experimental [E2]: run after gui has been started (gvim) [3]
+" option1:  au VimEnter * call SetupVAM()
+" option2:  au GUIEnter * call SetupVAM()
+" See BUGS sections below [*]
+" Vim 7.0 users see BUGS section [3]
+
+"===========================================================================
+" Yoeri Apts
+" .vimrc file
+
+" If comparing files side-by-side, then ...
+if &diff
+  " double the width up to a reasonable maximum
+  let &columns = ((&columns*2 > 172)? 200: &columns*2)
+endif
+
+" Get list of all open buffers
+noremap <F9> :files<CR>
+
+" Lots of inspiration from 
+" sample .vimrc file by Martin Brochhaus (Presented at PyCon APAC 2012)
+
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+
+" When opening a file with :tabfind [file], look in the path
+" . = look in the dir where the current file is in
+" ,, (empty text between commas) = look in the current directory
+" ** = look in each directory under the current directory
+set path=.,/usr/include,,**
+
+" Better copy & paste
+" When you want to paste large blocks of code into vim, press F2 before you
+" paste. At the bottom you should see ``-- INSERT (paste) --``.
+"" set pastetoggle=<F2>
+"" set clipboard=unnamed
+
+
+" Mouse and backspace
+"" set mouse=a  " on OSX press ALT and click
+"" set bs=2     " make backspace behave like normal again
+
+
+" Rebind <Leader> key
+" I like to have it here becuase it is easier to reach than the default and
+" it is next to ``m`` and ``n`` which I use for navigating between tabs.
+let mapleader="\\"
+" Use \\ to refer to a single \ as the mapleader key
+" let mapleader="\\"
+" let mapleader=","
+   
+" Bind nohl
+" Removes highlight of your last search
+" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
+"" noremap <C-n> :nohl<CR>
+"" vnoremap <C-n> :nohl<CR>
+"" inoremap <C-n> :nohl<CR>
+
+" Quicksave command
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+
+" Quick quit command
+"" noremap <Leader>e :quit<CR>  " Quit current window
+"" noremap <Leader>E :qa!<CR>   " Quit all windows
+
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+"" map <c-j> <c-w>j
+"" map <c-k> <c-w>k
+"" map <c-l> <c-w>l
+"" map <c-h> <c-w>h
+
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+" With the following mappings (which require gvim), you can press Ctrl-Left or
+" Ctrl-Right to go to the previous or next tabs, and can press Alt-Left or 
+" Alt-Right to move the current tab to the left or right.
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+
+" map sort function to a key
+"" vnoremap <Leader>s :sort<CR>
+
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+"" vnoremap < <gv  " better indentation
+"" vnoremap > >gv  " better indentation
+
+
+" Show whitespace
+" MUST be inserted BEFORE the colorscheme command
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" au InsertLeave * match ExtraWhitespace /\s\+$/
+
+
+" Color scheme  
+" mkdir -p ~/.vim/colors && cd ~/.vim/colors
+" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+set t_Co=256
+color wombat256mod
+
+
+" Enable syntax highlighting
+" You need to reload this file for the change to apply
+"" filetype off
+"" filetype plugin indent on
+"" syntax on
+
+
+" Showing line numbers and length
+set number  " show line numbers
+set tw=79   " width of document (used by gd)
+set nowrap  " don't automatically wrap on load
+set fo-=t   " don't automatically wrap text when typing
+set colorcolumn=100
+highlight ColorColumn ctermbg=233
+
+
+" easier formatting of paragraphs
+"" vmap Q gq
+"" nmap Q gqap
+
+
+" Useful settings
+set history=1000
+set undolevels=1000
+
+
+" Real programmers don't use TABs but spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
+
+
+" Make search case insensitive
+"" set hlsearch
+"" set incsearch
+"" set ignorecase
+"" set smartcase
+
+
+" Disable stupid backup and swap files - they trigger too many events
+" for file system watchers
+"" set nobackup
+"" set nowritebackup
+"" set noswapfile
+
+
+" Setup Pathogen to manage your plugins
+" mkdir -p ~/.vim/autoload ~/.vim/bundle
+" curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
+" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
+"" call pathogen#infect()
+
+
+" ============================================================================
+" Python IDE Setup
+" ============================================================================
+
+" plugin powerline (successor to vim-powerline)
+" https://powerline.readthedocs.org/en/latest/introduction.html
+" Installation with VAM:
+" :InstallAddons powerline
+" Add 'powerline' to the ActivateAddons line, like so:
+"   call vam#ActivateAddons(['pwerline'], {'auto_install' : 0})
+" 
+" 4-12-2014: Dropped this plugin; offers little fuinctionality and gets in the way
+
+" Settings for ctrlpS
+" https://github.com/kien/ctrlp.vim
+" cd ~/.vim/bundle
+" git clone https://github.com/kien/ctrlp.vim.git
+"" let g:ctrlp_max_height = 30
+"" set wildignore+=*.pyc
+"" set wildignore+=*_build/*
+"" set wildignore+=*/coverage/*
+
+
+" Settings for python-mode
+" Note: I'm no longer using this. Leave this commented out
+" and uncomment the part about jedi-vim instead
+" cd ~/.vim/bundle
+" git clone https://github.com/klen/python-mode
+"" map <Leader>g :call RopeGotoDefinition()<CR>
+"" let ropevim_enable_shortcuts = 1
+"" let g:pymode_rope_goto_def_newwin = "vnew"
+"" let g:pymode_rope_extended_complete = 1
+"" let g:pymode_breakpoint = 0
+"" let g:pymode_syntax = 1
+"" let g:pymode_syntax_builtin_objs = 0
+"" let g:pymode_syntax_builtin_funcs = 0
+"" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" Settings for jedi-vim
+" :AddonInfo jedi-vim
+"   Plugin: jedi-vim
+"   Home page: https://github.com/davidhalter/jedi-vim
+"   Source URL: git://github.com/davidhalter/jedi-vim (type git)
+" :InstallAddons jedi-vim  
+" call vam#ActivateAddons(['jedi-vim'], {'auto_install' : 0})
+" Documentation: http://jedi.jedidjah.ch/en/latest/
+" let g:jedi#related_names_command = "<leader>z"
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_select_first = 0
+" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"
+
+" Better navigating through omnicomplete option list
+" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+"" set completeopt=longest,menuone
+"" function! OmniPopup(action)
+""     if pumvisible()
+""         if a:action == 'j'
+""             return "\<C-N>"
+""         elseif a:action == 'k'
+""             return "\<C-P>"
+""         endif
+""     endif
+""     return a:action
+"" endfunction
+
+"" inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+"" inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+
+" Python folding
+" mkdir -p ~/.vim/ftplugin
+" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
+"" set nofoldenable
+
+" gui font
+:set guifont="Monospace 9"
+
