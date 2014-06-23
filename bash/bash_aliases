@@ -9,8 +9,8 @@ alias p='pwd'
 alias h='history'
 alias j='jobs'
 alias more='less'
-
 alias m='less'
+alias t='tree'
 
 # Long prompt
 alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
@@ -24,5 +24,14 @@ alias mydate='date +%F-%H:%M:%S'
 alias ipt='sudo iptables'
 
 # relative cd
-CDPATH=$CDPATH:.:..:../..:../../..:../../../..:../../../../..:../../../../../..
+CDPATH=$CDPATH:.:..:../..:../../..:../../../..:../../../../..:../../../../../..:$HOME
+
+# gvim
+alias gv='gvim'
+alias gvd='gvimdiff'
+
+# gvimpy: load all python sources in this dir and 1 dir deep into
+# seperate gvim tabs
+alias gvimpy='gvim -p *\.py */*\.py'
+
 
