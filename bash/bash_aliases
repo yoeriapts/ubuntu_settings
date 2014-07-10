@@ -2,9 +2,9 @@
 
 # for every day use
 alias c='clear'
-alias l='ls -l'
-alias ll='ls -al'
-alias la='ls -a'
+alias l='ls -CF'
+alias ll='ls -alF'
+alias la='ls -A'
 alias p='pwd'
 alias h='history'
 alias j='jobs'
