@@ -34,5 +34,7 @@ alias gvd='gvimdiff'
 # seperate gvim tabs
 alias gvimpy='gvim -p *\.py */*\.py'
 
-alias deploy='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
+alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
+
+alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
 
