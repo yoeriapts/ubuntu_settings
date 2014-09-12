@@ -1,0 +1,115 @@
+#!/usr/bin/python
+#!/usr/bin/env python
+"""
+SYNOPSIS
+
+    deploy [-h,--help] [-v,--verbose] [--version] [-f, --force]
+
+DESCRIPTION
+
+    TODO This describes how to use this script. This docstring
+    will be printed by the script if there is an error or
+    if the user requests help (-h or --help).
+
+EXAMPLES
+
+    TODO: Show some examples of how to use this script.
+
+EXIT STATUS
+
+    TODO: List exit codes
+
+AUTHOR
+
+    TODO: Name <name@example.org>
+
+LICENSE
+
+    This script is in the public domain, free from copyrights or restrictions.
+
+VERSION
+
+    $Id$
+"""
+
+import sys, os, traceback, optparse
+import time
+import re
+
+import os.path
+from subprocess import call
+
+#target_basepath = "/home/yoeri/srv/"
+target_basepath = "/srv/"
+target_symlink = target_basepath + "nfs"
+rootfs = "./output/images/rootfs.tar" # path to rootfs.tar
+
+def main ():
+
+    global options, args
+
+    if not os.path.isfile(rootfs):
+        print rootfs, "not found"
+        exit(1)
+
+    buildroot_dir = os.path.basename(os.getcwd())
+
+    # alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; \
+    #   sudo mkdir -p /srv/nfs_buildroot_latest; \ 
+    #   sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
+    # 
+
+    target_path = target_basepath + "nfs_" + buildroot_dir
+    print "target path:", target_path
+
+    if os.path.exists(target_path):
+        if options.force:
+            print "Removing existing target directory"
+            ret = call(["rm", "-rf", target_path])
+        else:
+            print "target path exists, use -f|--force to force removal"
+            exit (1)
+
+    print "Creating target directory"
+    ret = call(["mkdir", "-p", target_path])
+    print "  ret = ", ret
+
+    print "Untarring", rootfs, "to", target_path
+    ret = call(["tar", "xvf", rootfs, "-C", target_path])
+    print "  ret = ", ret
+
+    print "Linking", target_symlink, "to", target_path
+    ret = call(["rm", target_symlink])
+    print "  ret = ", ret
+    ret = call(["ln", "-s", target_path, target_symlink])
+    print "  ret = ", ret
+
+    print "ls -l", target_basepath
+    call(["ls", "-l", target_basepath])
+
+
+if __name__ == '__main__':
+    try:
+        start_time = time.time()
+        parser = optparse.OptionParser(formatter=optparse.TitledHelpFormatter(), usage=globals()['__doc__'], version='$Id$')
+        parser.add_option ('-v', '--verbose', action='store_true', default=False, help='verbose output')
+        parser.add_option ('-f', '--force', action='store_true', default=False, help='verbose output')
+        (options, args) = parser.parse_args()
+        #if len(args) < 1:
+        #    parser.error ('missing argument')
+        if options.verbose: print time.asctime()
+        main()
+        if options.verbose: print time.asctime()
+        if options.verbose: print 'TOTAL TIME IN MINUTES:',
+        if options.verbose: print (time.time() - start_time) / 60.0
+        sys.exit(0)
+    except KeyboardInterrupt, e: # Ctrl-C
+        raise e
+    except SystemExit, e: # sys.exit()
+        raise e
+    except Exception, e:
+        print 'ERROR, UNEXPECTED EXCEPTION'
+        print str(e)
+        traceback.print_exc()
+        os._exit(1)
+

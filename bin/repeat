@@ -1,0 +1,10 @@
+#!/bin/bash
+	
+usage="usage: repeat blah"
+
+while :
+    do
+        # echo 'bla'
+        $*
+    done
+
