@@ -188,6 +188,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 color wombat256mod
+" color sonoma
 
 
 " Enable syntax highlighting
@@ -322,4 +323,8 @@ set expandtab
 
 " gui font
 :set guifont="Monospace 9"
+
+" cscope
+source $HOME/.vim/cscope_maps.vim
+
 

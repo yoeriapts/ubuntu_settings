@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/yoeri/workspace/.metadata'
-let g:netrw_dirhist_2='/home/yoeri/local/BSP-Phytec-phyFLEX-i.MX6-PD13.2.1/platform-phyFLEX-i.MX6/sysroot-target/usr/share/terminfo/f'
-let g:netrw_dirhist_3='/home/yoeri/workspace/boost_threadexp_1/Debug'
