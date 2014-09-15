@@ -327,4 +327,7 @@ set expandtab
 " cscope
 source $HOME/.vim/cscope_maps.vim
 
+" for Scons
+autocmd BufReadPre SConstruct set filetype=python
+autocmd BufReadPre SConscript set filetype=python
 
