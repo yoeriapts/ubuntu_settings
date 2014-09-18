@@ -13,6 +13,15 @@ alias more='less'
 alias m='less'
 alias t='tree'
 
+alias \.\.='cd ..'
+alias \.\.\.='cd ../..'
+alias \.\.\.\.='cd ../../..'
+alias \.\.\.\.\.='cd ../../../..'
+alias \.\.\.\.\.\.='cd ../../../../..'
+alias \.\.\.\.\.\.\.='cd ../../../../../..'
+alias \.\.\.\.\.\.\.\.='cd ../../../../../../..'
+alias \.\.\.\.\.\.\.\.\.='cd ../../../../../../../..'
+
 # Long prompt
 alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
 # short prompt
