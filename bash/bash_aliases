@@ -43,9 +43,10 @@ alias gvd='gvimdiff'
 # python
 alias py='python'
 
-# gvimpy: load all python sources in this dir and 1 dir deep into
-# seperate gvim tabs
-alias gvimpy='gvim -p *\.py */*\.py'
+# gvimpy: load all python sources in this dir and below
+alias gvimpy='gvim `find . -name \*\.py `'
+# gvimpy: load all python sources in this dir and below in seperate tabs
+alias gvimpyt='gvim -p `find . -name \*\.py `'
 
 # Deploy buildroot builds to nfs server
 alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
