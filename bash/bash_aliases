@@ -21,6 +21,7 @@ alias \.\.\.\.\.\.='cd ../../../../..'
 alias \.\.\.\.\.\.\.='cd ../../../../../..'
 alias \.\.\.\.\.\.\.\.='cd ../../../../../../..'
 alias \.\.\.\.\.\.\.\.\.='cd ../../../../../../../..'
+alias up='cd ..'
 
 # Long prompt
 alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
@@ -50,6 +51,12 @@ alias gvimpyt='gvim -p `find . -name \*\.py `'
 
 # Start prompt-toolkit-python in vi mode
 alias ptpy='ptpython --vi'
+
+# # C/C++
+# gvimc: load all C/C++ sources in this dir and below
+alias gvimc='gvim `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.h -print -o -name \*.hpp -print`'
+# gvimpy: load all C/C++ sources in this dir and below in seperate tabs
+alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.h -print -o -name \*.hpp -print`'
 
 # Deploy buildroot builds to nfs server
 alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
