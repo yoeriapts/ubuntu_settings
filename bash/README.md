@@ -26,12 +26,8 @@ bind -P
 ctrl-w: unix-word-rubout: kill word backward
 ctrl-r: reverse-search-history
 ctrl-x ctrl-e: edit-and-execute-command: use $EDITOR to edit current line
-ctrl-f: reverse-searc-history after you started typing :-)
+ctrl-f: reverse-search-history after you started typing :-)
 ctrl-e: end-of-line: go to eol and start editing
 ```
-
-
-
-
 
 --Yoeri
