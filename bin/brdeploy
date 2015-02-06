@@ -1,0 +1,148 @@
+#!/usr/bin/python
+#!/usr/bin/env python
+"""
+SYNOPSIS
+
+    deploy [-h,--help] [-v,--verbose] [-f, --force] [-t, --target target_path]
+
+DESCRIPTION
+
+    br_deploy = buildroot deploy (for NFS mounted uboot)
+
+    This cmd must be executed from the buildroot 'build' (root) directory
+    where the rootfs.tar file is visible from at 'relative' location './output/images/rootfs.tar'
+
+    It will copy the RFS in the 'relative' location './output/images/rootfs.tar'
+    to the given target_path and links /srv/nfs to /nfs/target_path
+    If no target_path is given, /nfs/$basename(cwd) will be used.
+
+EXAMPLES
+
+    ~/git_workspace/buildroot-at91$ brdeploy
+
+    will deploy the RFS in ~/git_workspace/buildroot-at91/output/images/rootfs.tar
+    to /nfs/buildroot-at91/ and then link /srv/nfs to /XXX
+
+
+    TODO: Show some examples of how to use this script.
+
+EXIT STATUS
+
+    TODO: List exit codes
+
+AUTHOR
+
+    yoeri dot apts at gmail dot com
+
+VERSION
+
+    0.1
+"""
+
+import sys, os, traceback, optparse
+import time
+import re
+
+import os.path
+from subprocess import call
+
+import pdb
+
+#target_basepath = "/home/yoeri/srv/"
+target_basepath = "/srv/"
+target_symlink = target_basepath + "nfs"
+rootfs_in_tree = "./output/images/rootfs.tar" # path to rootfs.tar for in-tree builds
+rootfs_out_of_tree = "./images/rootfs.tar" # path to rootfs.tar for out-of-tree builds
+
+def main():
+
+    global options, args
+
+    rootfs = None
+    if os.path.isfile(rootfs_in_tree):
+        print "found", rootfs_in_tree
+        rootfs = rootfs_in_tree
+    elif os.path.isfile(rootfs_out_of_tree):
+        print "found", rootfs_out_of_tree
+        rootfs = rootfs_out_of_tree
+
+    if not rootfs:
+        print "Could not find %s, nor %s. exiting ..." % (rootfs_in_tree, rootfs_out_of_tree)
+        exit(1)
+
+    # Determine target path
+    buildroot_dir = options.dirname if options.dirname else "nfs_" + os.path.basename(os.getcwd())
+    target_path = target_basepath + buildroot_dir
+    print "target path:", target_path
+
+    if os.path.exists(target_path):
+        if options.force:
+            print "Removing existing target directory"
+            ret = call(["rm", "-rf", target_path])
+        else:
+            print "target path exists, use -f|--force to force removal"
+            exit (1)
+
+    print "Creating target directory"
+    ret = call(["mkdir", "-p", target_path])
+    if ret:
+        print("Error:", ret)
+        exit(ret)
+
+    print "Untarring", rootfs, "to", target_path
+    ret = call(["tar", "xvf", rootfs, "-C", target_path])
+    ret = call(["tar", "xf", rootfs, "-C", target_path])
+    if ret:
+        print("Error:", ret)
+        exit(ret)
+
+    print "Linking", target_symlink, "to", target_path
+    ret = call(["rm", target_symlink])
+    if ret:
+        print("Error:", ret)
+        exit(ret)
+    ret = call(["ln", "-s", target_path, target_symlink])
+    if ret:
+        print("Error:", ret)
+        exit(ret)
+
+    print "ls -l", target_basepath
+    call(["ls", "-l", target_basepath])
+
+
+if __name__ == '__main__':
+    try:
+        start_time = time.time()
+        parser = optparse.OptionParser(formatter=optparse.TitledHelpFormatter(),
+                                        usage=globals()['__doc__'], version='0.1')
+        # -h, --help is handled automagically by optparse
+        parser.add_option ('-v', '--verbose', action='store_true', default=False,
+                            help='verbose output')
+        parser.add_option ('-f', '--force', action='store_true', default=False,
+                            help='force creation of target directories')
+        parser.add_option ('-t', '--target', dest="dirname", metavar="FILE",
+                            help='use this target directory name in stead of default')
+
+        (options, args) = parser.parse_args()
+
+        print("options:", options)
+        print("args:", args)
+
+        #pdb.set_trace()
+
+        if options.verbose: print time.asctime()
+        main()
+        if options.verbose: print time.asctime()
+        if options.verbose: print 'TOTAL TIME IN MINUTES:',
+        if options.verbose: print (time.time() - start_time) / 60.0
+        sys.exit(0)
+    except KeyboardInterrupt, e: # Ctrl-C
+        raise e
+    except SystemExit, e: # sys.exit()
+        raise e
+    except Exception, e:
+        print 'ERROR, UNEXPECTED EXCEPTION'
+        print str(e)
+        traceback.print_exc()
+        os._exit(1)
+
