@@ -12,6 +12,8 @@ alias j='jobs'
 alias more='less'
 alias m='less'
 alias t='tree'
+alias t1='tree -L 1'
+alias t2='tree -L 2'
 
 alias \.\.='cd ..'
 alias \.\.\.='cd ../..'
