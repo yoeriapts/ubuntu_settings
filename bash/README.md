@@ -30,4 +30,11 @@ ctrl-f: reverse-search-history after you started typing :-)
 ctrl-e: end-of-line: go to eol and start editing
 ```
 
+Use with zsh (Z-shell)
+
+symlink the bash aliases file (will be read when processing the ~/.zshrc file)
+```
+$ ln -s ~/ubuntu_settings/bash/bash_aliases ~/.zsh/rc/aliases
+```
+
 --Yoeri
