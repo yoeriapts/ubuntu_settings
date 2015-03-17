@@ -189,6 +189,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set t_Co=256
 color wombat256mod
 " color sonoma
+" color distinguished
 
 
 " Enable syntax highlighting
