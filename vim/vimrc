@@ -187,9 +187,11 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
-color wombat256mod
+" color wombat256mod
 " color sonoma
 " color distinguished
+" color darkblue
+color desert
 
 
 " Enable syntax highlighting
@@ -287,17 +289,20 @@ set expandtab
 
 " Settings for jedi-vim
 " :AddonInfo jedi-vim
-"   Plugin: jedi-vim
-"   Home page: https://github.com/davidhalter/jedi-vim
-"   Source URL: git://github.com/davidhalter/jedi-vim (type git)
-" :InstallAddons jedi-vim  
+"  Plugin: jedi-vim
+"  Home page: https://github.com/davidhalter/jedi-vim
+"  Source URL: git://github.com/davidhalter/jedi-vim (type git)
+:InstallAddons jedi-vim  
 " call vam#ActivateAddons(['jedi-vim'], {'auto_install' : 0})
 " Documentation: http://jedi.jedidjah.ch/en/latest/
-" let g:jedi#related_names_command = "<leader>z"
-" let g:jedi#popup_on_dot = 0
-" let g:jedi#popup_select_first = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-"
+" To us the vim jedi plugin, the Python jedi package must be installed
+"   on your system; use $ pip install jedi or pip install --user jedi
+" let g:jedi#related_names_command = "<leader>z" # deprected... use nect line in stead
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
 
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim

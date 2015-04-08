@@ -2,10 +2,17 @@
 
 # for every day use
 alias c='clear'
+
 alias l='ls -CF'
 alias la='ls -CFA'
 alias ll='ls -lF'
 alias lla='ls -lFA'
+# 'human' versions of above
+alias lh='ls -CFh'
+alias lah='ls -CFAh'
+alias llh='ls -lFh'
+alias llah='ls -lFAh'
+
 alias p='pwd'
 alias h='history'
 alias j='jobs'
@@ -63,4 +70,11 @@ alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name 
 # Deploy buildroot builds to nfs server
 alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
 alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
+
+# PyCharm
+alias pycharm="~/ws/opt/pycharm-community-4.0.5/bin/pycharm.sh"
+alias pc="~/ws/opt/pycharm-community-4.0.5/bin/pycharm.sh"
+
+# Eclipse / Luna
+alias luna='cd ~/opt/eclipse && ./eclipse'
 
