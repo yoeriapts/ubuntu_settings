@@ -48,7 +48,9 @@ CDPATH=$CDPATH:.:..:../..:../../..:../../../..:../../../../..:../../../../../..:
 
 # gvim
 alias gv='gvim'
+alias gv2='/usr/bin/gvim'       # For use on Aurora/Csico
 alias gvd='gvimdiff'
+alias gvd2='/usr/bin/gvimdiff'  # For use on Aurora/Csico
 
 # python
 alias py='python'
@@ -77,4 +79,9 @@ alias pc="~/ws/opt/pycharm-community-4.0.5/bin/pycharm.sh"
 
 # Eclipse / Luna
 alias luna='cd ~/opt/eclipse && ./eclipse'
+
+# grep
+alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
+alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cpp -o -name \*\.c \) -a -type f | xargs grep -n'
+
 
