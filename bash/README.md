@@ -1,8 +1,14 @@
 Bash settings
 ===============
 
-Create some symlinks
+How to use these 'bash' settings:
 
+Clone this repo to ~/ubuntu_settings (default location):
+```bash
+$ git clone https://github.com/yoeriapts/ubuntu_settings.git
+```
+
+Create some symlinks
 ```bash
 $ cd ~
 $ ln -s ~/ubuntu_settings/bash/bash_aliases .bash_aliases
