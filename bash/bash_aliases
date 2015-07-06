@@ -74,8 +74,8 @@ alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buil
 alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
 
 # PyCharm
-alias pycharm="~/ws/opt/pycharm-community-4.0.5/bin/pycharm.sh"
-alias pc="~/ws/opt/pycharm-community-4.0.5/bin/pycharm.sh"
+alias pycharm="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
+alias pc="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
 
 # Eclipse / Luna
 alias luna='cd ~/opt/eclipse && ./eclipse'
@@ -83,5 +83,9 @@ alias luna='cd ~/opt/eclipse && ./eclipse'
 # grep
 alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
 alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cpp -o -name \*\.c \) -a -type f | xargs grep -n'
+alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f | xargs grep -n'
+alias pygrep='find . \( -name \*\.py \) -a -type f | xargs grep -n'
+alias idlgrep='find . \( -name \*\.idl \) -a -type f | xargs grep -n'
+alias igrep='idlgrep'
 
 
