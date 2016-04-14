@@ -25,6 +25,7 @@ fi
 
 To use the 'bash_aliases', add the following to .bashrc
 ```bash
+# bash_aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
