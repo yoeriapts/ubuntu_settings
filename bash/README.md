@@ -1,5 +1,4 @@
-Bash settings
-===============
+# Bash settings
 
 How to use these 'bash' settings:
 
@@ -17,7 +16,7 @@ $ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
 ```
 
 add the following to .bashrc
-```
+```bash
 # Git prompt
 if [ -f ~/.gitprompt ]; then
     . ~/.gitprompt
@@ -26,7 +25,7 @@ fi
 
 keystrokes on the command line:
 
-```
+```bash
 bind -P
 
 ctrl-w: unix-word-rubout: kill word backward
@@ -36,10 +35,12 @@ ctrl-f: reverse-search-history after you started typing :-)
 ctrl-e: end-of-line: go to eol and start editing
 ```
 
-Use with zsh (Z-shell)
+## Use with zsh (Z-shell)
+
+For the moment, from all the things mentioned above, only the bash_aliases file can be used with zsh:
 
 symlink the bash aliases file (will be read when processing the ~/.zshrc file)
-```
+```bash
 $ ln -s ~/ubuntu_settings/bash/bash_aliases ~/.zsh/rc/aliases
 ```
 
