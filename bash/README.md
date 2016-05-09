@@ -15,11 +15,19 @@ $ ln -s ~/ubuntu_settings/bash/gitprompt .gitprompt
 $ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
 ```
 
-add the following to .bashrc
+To use 'gitprompt' add the following to .bashrc
 ```bash
 # Git prompt
 if [ -f ~/.gitprompt ]; then
     . ~/.gitprompt
+fi
+```
+
+To use the 'bash_aliases', add the following to .bashrc
+```bash
+# bash_aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi
 ```
 
