@@ -55,6 +55,7 @@ alias gvd2='/usr/bin/gvimdiff'  # For use on Aurora/Csico
 
 # python
 alias py='python'
+alias py3='python3'
 
 # gvimpy: load all python sources in this dir and below
 alias gvimpy='gvim `find . -name \*\.py `'
@@ -64,7 +65,7 @@ alias gvimpyt='gvim -p `find . -name \*\.py `'
 # Start prompt-toolkit-python in vi mode
 alias ptpy='ptpython --vi'
 
-# # C/C++
+# C/C++
 # gvimc: load all C/C++ sources in this dir and below
 alias gvimc='gvim `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.h -print -o -name \*.hpp -print`'
 # gvimpy: load all C/C++ sources in this dir and below in seperate tabs
@@ -78,8 +79,14 @@ alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo t
 alias pycharm="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
 alias pc="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
 
-# Eclipse / Luna
+# Eclipse / Luna / Mars
 alias luna='cd ~/opt/eclipse && ./eclipse'
+if [ $(hostname) == 'vdcm-dev' ]; 	# On vdcm-dev at Cisco
+then
+	alias mars='/home/ltielen/eclipse/cpp-mars/eclipse/eclipse -vm /usr/bin &'
+else
+	unalias mars >& /dev/null
+fi
 
 # Git
 alias gis='git istatus'
