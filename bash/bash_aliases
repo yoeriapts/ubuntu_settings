@@ -101,6 +101,7 @@ alias pyurc2grep='find . \( -name \*URC2\*\.py -o -name \*Urc2\*.py \) -a -type 
 alias idlgrep='find . \( -name \*\.idl \) -a -type f | xargs grep -n'
 alias igrep='idlgrep'
 
+## Cisco specific
 # vDCM 
-alias gobuild='ssh -Y yapts@10.50.232.37'
+alias gobuild='ssh -Y yapts@10.50.201.11
 
