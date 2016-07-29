@@ -81,8 +81,7 @@ alias pc="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
 
 # Eclipse / Luna / Mars
 alias luna='cd ~/opt/eclipse && ./eclipse'
-if [ $(hostname) == 'vdcm-dev' ]; 	# On vdcm-dev at Cisco
-then
+if [ $(hostname) = 'vdcm-dev' ]; then 	# On vdcm-dev at Cisco
 	alias mars='/home/ltielen/eclipse/cpp-mars/eclipse/eclipse -vm /usr/bin &'
 else
 	unalias mars >& /dev/null
@@ -104,7 +103,7 @@ alias igrep='idlgrep'
 alias lgrep='ls -lhAF | grep -i'
 
 # find
-alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2 | tail -n 1'
+alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d" " -f 2 '
 
 ## Cisco specific
 # vDCM 
