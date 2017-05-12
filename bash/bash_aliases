@@ -19,6 +19,7 @@ alias j='jobs'
 alias more='less'
 alias m='less'
 alias t='tree'
+alias f='find . -name'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
@@ -90,6 +91,7 @@ fi
 
 # Git
 alias gis='git istatus'
+alias gib='git branch'
 
 # grep
 alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
@@ -102,5 +104,7 @@ alias idlgrep='find . \( -name \*\.idl \) -a -type f | xargs grep -n'
 alias igrep='idlgrep'
 
 # vDCM 
-alias gobuild='ssh -Y yapts@10.50.232.37'
+alias gobuild='ssh -Y yapts@10.50.201.11'
+alias mur='make -j 4 && make upload && dcm-ssh systemctl restart vdcm.target'	# mur = make-upload-restart
+
 
