@@ -76,8 +76,8 @@ alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buil
 alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
 
 # PyCharm
-alias pycharm="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
-alias pc="~/ws/opt/pycharm-community-4.5.2/bin/pycharm.sh"
+alias pycharm="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
+alias pc="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
 
 # Eclipse / Luna / Mars
 alias luna='cd ~/opt/eclipse && ./eclipse'
@@ -105,7 +105,18 @@ alias lgrep='ls -lhAF | grep -i'
 # find
 alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d" " -f 2 '
 
+# make destdir and copy
+mkcp() {
+    test -d "$2" || mkdir -p "$2"
+    cp -r "$1" "$2"
+}
+
+# find file
+alias ff='find . -type f -name'
+
 ## Cisco specific
 # vDCM 
 alias gobuild='ssh -Y yapts@10.50.201.11'
+
+alias vdcm-version="ssh root@\$DCM_IP 'rpm -q vdcm' "
 
