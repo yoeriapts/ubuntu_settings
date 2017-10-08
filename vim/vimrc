@@ -337,3 +337,7 @@ source $HOME/.vim/cscope_maps.vim
 autocmd BufReadPre S[Cc]onstruct set filetype=python
 autocmd BufReadPre S[Cc]onscript set filetype=python
 
+" for searching
+:set hlsearch
+:set ignorecase
+
