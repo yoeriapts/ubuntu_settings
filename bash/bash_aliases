@@ -126,6 +126,22 @@ alias ff='find . -type f -name'
 ## Cisco specific
 # vDCM 
 alias gobuild='ssh -Y yapts@10.50.201.11'
-alias mur='make -j 4 && make upload && dcm-ssh systemctl restart vdcm.target'	# mur = make-upload-restart
+alias mur='make -j 8 && make upload && dcm-ssh systemctl restart vdcm.target'	# mur = make-upload-restart
 alias vdcm-version="ssh root@\$DCM_IP 'rpm -q vdcm' "
+alias zzz=zzz-before
+
+printf 'HOSTNAME = %s\n' $HOSTNAME
+
+case $HOSTNAME in
+  (vdcm-dev) echo "we're on vdcm-dev";
+	alias zzz=zzz-vdcm-dev;;
+  (gps-ads-101) echo "we're on gps-ads-101 (aurora)";
+	alias zzz=zzz-gps-ads-101;;
+  (*) echo "We're on an UNKNOWN host !!!";
+	alias zzz=zzz-unknown-host;;
+esac
+
+
+
+
 
