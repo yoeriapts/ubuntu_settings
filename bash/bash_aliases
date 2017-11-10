@@ -109,6 +109,7 @@ alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f | xargs grep -
 alias pygrep='find . \( -name \*\.py \) -a -type f | xargs grep -n'
 alias pyurcgrep='find . \( -name \*URC\*\.py -o -name \*Urc\*.py \) -a -type f | xargs grep -n'
 alias pyurc2grep='find . \( -name \*URC2\*\.py -o -name \*Urc2\*.py \) -a -type f | xargs grep -n'
+alias pyurc3grep='find . \( -name \*URC3\*\.py -o -name \*Urc3\*.py \) -a -type f | xargs grep -n'
 alias idlgrep='find . \( -name \*\.idl \) -a -type f | xargs grep -n'
 alias igrep='idlgrep'
 alias lgrep='ls -lhAF | grep -i'
