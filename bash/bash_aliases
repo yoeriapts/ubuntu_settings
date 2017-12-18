@@ -132,16 +132,16 @@ alias gobuild='ssh -Y yapts@10.50.201.11'
 alias vdcm-version="ssh root@\$DCM_IP 'rpm -q vdcm' "
 alias zzz=zzz-before
 
-printf 'HOSTNAME = %s\n' $HOSTNAME
+# printf 'HOSTNAME = %s\n' $HOSTNAME
 
-case $HOSTNAME in
-  (vdcm-dev) echo "we're on vdcm-dev";
-    # mur = make-upload-restart
-    alias mur='make -j 8 && make upload && dcm-ssh systemctl restart vdcm.target'
-	alias zzz=zzz-vdcm-dev;;
-  (gpk-ads-101) echo "we're on gpk-ads-101 (aurora)";
-	alias zzz=zzz-gps-ads-101;;
-  (*) echo "We're on an UNKNOWN host !!!";
-	alias zzz=zzz-unknown-host;;
-esac
+# case $HOSTNAME in
+#  (vdcm-dev) echo "we're on vdcm-dev";
+#    # mur = make-upload-restart
+#    alias mur='make -j 8 && make upload && dcm-ssh systemctl restart vdcm.target'
+#	alias zzz=zzz-vdcm-dev;;
+#  (gpk-ads-101) echo "we're on gpk-ads-101 (aurora)";
+#	alias zzz=zzz-gps-ads-101;;
+#  (*) echo "We're on an UNKNOWN host !!!";
+#	alias zzz=zzz-unknown-host;;
+# esac
 
