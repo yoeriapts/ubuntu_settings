@@ -1,4 +1,4 @@
-# Copy this file to ~/.bash_aliases and make your .bashrc source it (it already does)
+# Copy this file to ~/.bash_aliases and make your .bashrc sources it (it should!)
 
 # for every day use
 alias c='clear'
@@ -36,6 +36,9 @@ alias \.\.\.\.\.\.\.\.='cd ../../../../../../..'
 alias \.\.\.\.\.\.\.\.\.='cd ../../../../../../../..'
 alias up='cd ..'
 
+# cd to most recently changed subdir
+alias cdt='cd  "$(\ls -1dt ./*/ | head -n 1)"'
+
 # Long prompt
 alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
 # short prompt
@@ -52,9 +55,8 @@ CDPATH=$CDPATH:.:..:../..:../../..:../../../..:../../../../..:../../../../../..:
 
 # gvim
 alias gv='gvim'
-alias gv2='/usr/bin/gvim'       # For use on Aurora/Csico
 alias gvd='gvimdiff'
-alias gvd2='/usr/bin/gvimdiff'  # For use on Aurora/Csico
+alias gvimer='gvim --remote-silent'
 
 # python
 alias py='python'
@@ -80,8 +82,10 @@ alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buil
 alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
 
 # PyCharm
-# no aliases are used, make sure /bin/pc and /bin/pycharm 
-# are soft-linked to the right executable on your target
+# no aliases are used, see one of these:
+# 1) pycharm installation already created 'charm' in /usr/local/bin/charm
+# 2) link it yourself: soft link /bin/pc and|or /bin/pycharm 
+#                      to the right executable on your target
 # alias pycharm="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
 # alias pc="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
 
@@ -145,4 +149,11 @@ alias zzz=zzz-before
 #  (*) echo "We're on an UNKNOWN host !!!";
 #	alias zzz=zzz-unknown-host;;
 # esac
+
+# Bash internal options
+#shopt -s histverify
+
+# Environment variables
+# These are not aliases and should eventualy move to another file!
+export SVN_EDITOR=vim
 
