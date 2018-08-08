@@ -109,13 +109,10 @@ alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
 
 # grep
 alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
-alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cpp -o -name \*\.c \) -a -type f | xargs grep -n'
-alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f | xargs grep -n'
-alias pygrep='find . \( -name \*\.py \) -a -type f | xargs grep -n'
-alias pyurcgrep='find . \( -name \*URC\*\.py -o -name \*Urc\*.py \) -a -type f | xargs grep -n'
-alias pyurc2grep='find . \( -name \*URC2\*\.py -o -name \*Urc2\*.py \) -a -type f | xargs grep -n'
-alias pyurc3grep='find . \( -name \*URC3\*\.py -o -name \*Urc3\*.py \) -a -type f | xargs grep -n'
-alias idlgrep='find . \( -name \*\.idl \) -a -type f | xargs grep -n'
+alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cpp -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -n'
+alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -n'
+alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -n'
+alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -n'
 alias igrep='idlgrep'
 alias lgrep='ls -lhAF | grep -i'
 
