@@ -35,6 +35,8 @@ alias \.\.\.\.\.\.\.='cd ../../../../../..'
 alias \.\.\.\.\.\.\.\.='cd ../../../../../../..'
 alias \.\.\.\.\.\.\.\.\.='cd ../../../../../../../..'
 alias up='cd ..'
+alias upup='cd ../..'
+alias upupup='cd ../../..'
 
 # cd to most recently changed subdir
 alias cdt='cd  "$(\ls -1dt ./*/ | head -n 1)"'
@@ -134,6 +136,9 @@ alias gobuild='ssh -Y yapts@10.50.201.11'
 alias vdcm-version="ssh root@\$DCM_IP 'rpm -q vdcm' "
 alias zzz=zzz-before
 
+# Docker
+alias d=docker
+
 # printf 'HOSTNAME = %s\n' $HOSTNAME
 
 # case $HOSTNAME in
@@ -154,3 +159,55 @@ alias zzz=zzz-before
 # These are not aliases and should eventualy move to another file!
 export SVN_EDITOR=vim
 
+# ------------------------------------
+# Docker alias and function
+# ------------------------------------
+
+# Get latest container ID
+alias dl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# Get process included stop container
+alias dpa="docker ps -a"
+alias dpsa="docker ps -a"
+
+# Get images
+alias di="docker images"
+alias dim="docker images"
+alias did="docker images -f 'dangling=true' "
+
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+# Stop all containers
+dstop() { docker stop $(docker ps -a -q); }
+
+# Remove all containers
+drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# Remove all images
+dri() { docker rmi $(docker images -q); }
+
+# Dockerfile build, e.g., $dbu tcnksm/test 
+dbu() { docker build -t=$1 .; }
+
+# Show all alias related docker
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+# Bash into running container
+dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
