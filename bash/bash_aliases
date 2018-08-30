@@ -159,6 +159,11 @@ alias d=docker
 # These are not aliases and should eventualy move to another file!
 export SVN_EDITOR=vim
 
+# Grab the current working directory, in this terminal
+alias gwd='echo $(pwd) > /tmp/cwd.$USER'
+# Change the current working directory in the NEW terminal
+alias cwd='cd $(cat /tmp/cwd.$USER)'
+
 # ------------------------------------
 # Docker alias and function
 # ------------------------------------
