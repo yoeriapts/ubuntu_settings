@@ -41,6 +41,9 @@ alias upupup='cd ../../..'
 # cd to most recently changed subdir
 alias cdt='cd  "$(\ls -1dt ./*/ | head -n 1)"'
 
+# handle common typo
+alias xs=cd
+
 # Long prompt
 alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
 # short prompt
@@ -160,9 +163,11 @@ alias d=docker
 export SVN_EDITOR=vim
 
 # Grab the current working directory, in this terminal
-alias gwd='echo $(pwd) > /tmp/cwd.$USER'
+# Silently make a working dir
+mkdir -p ~/.tmp
+alias gwd='echo $(pwd) > ~/.tmp/cwd.$USER'
 # Change the current working directory in the NEW terminal
-alias cwd='cd $(cat /tmp/cwd.$USER)'
+alias cwd='cd $(cat ~/.tmp/cwd.$USER)'
 
 # ------------------------------------
 # Docker alias and function
