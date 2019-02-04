@@ -78,9 +78,9 @@ alias ptpy='ptpython --vi'
 
 # C/C++
 # gvimc: load all C/C++ sources in this dir and below
-alias gvimc='gvim `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.h -print -o -name \*.hpp -print`'
+alias gvimc='gvim `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.cc -print -o -name \*.h -print -o -name \*.hpp -print`'
 # gvimpy: load all C/C++ sources in this dir and below in seperate tabs
-alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.h -print -o -name \*.hpp -print`'
+alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.cc -print -o -name \*.h -print -o -name \*.hpp -print`'
 
 # Deploy buildroot builds to nfs server
 alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
@@ -103,7 +103,8 @@ else
 fi
 
 # Git
-alias gis='git istatus'
+# alias gis='git istatus'
+alias gis='git status'
 alias gib='git branch'
 
 # json 
@@ -114,9 +115,10 @@ alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
 
 # grep
 alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
-alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cpp -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -n'
+alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -n'
 alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -n'
 alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -n'
+alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -n'
 alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -n'
 alias igrep='idlgrep'
 alias lgrep='ls -lhAF | grep -i'
@@ -167,7 +169,7 @@ export SVN_EDITOR=vim
 mkdir -p ~/.tmp
 alias gwd='echo $(pwd) > ~/.tmp/cwd.$USER'
 # Change the current working directory in the NEW terminal
-alias cwd='cd $(cat ~/.tmp/cwd.$USER)'
+alias cwd='cd "$(cat ~/.tmp/cwd.$USER)"'
 
 # ------------------------------------
 # Docker alias and function
