@@ -27,7 +27,7 @@ fi
 To use the 'z' (jump around) utility add the following to .bashrc
 (check location of z!)
 
-```
+```bash
 # z - jump around
 if [ -f ~/environ/z/z.sh ]; then
     . ~/environ/z/z.sh
