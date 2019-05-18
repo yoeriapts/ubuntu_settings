@@ -15,13 +15,6 @@ $ ln -s ~/ubuntu_settings/bash/gitprompt .gitprompt
 $ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
 ```
 
-To use 'gitprompt' add the following to .bashrc
-```bash
-# Git prompt
-if [ -f ~/.gitprompt ]; then
-    . ~/.gitprompt
-fi
-```
 
 To use the 'bash_aliases', add the following to .bashrc
 ```bash
@@ -31,7 +24,25 @@ if [ -f ~/.bash_aliases ]; then
 fi
 ```
 
-keystrokes on the command line:
+To use the 'z' (jump around) utility add the following to .bashrc
+(check location of z!)
+
+```
+# z - jump around
+if [ -f ~/environ/z/z.sh ]; then
+    . ~/environ/z/z.sh
+fi
+```
+
+To use 'gitprompt' add the following to .bashrc
+```bash
+# Git prompt
+if [ -f ~/.gitprompt ]; then
+    . ~/.gitprompt
+fi
+```
+
+To manipulate some 'keystrokes' on the command line:
 
 ```bash
 bind -P
