@@ -56,11 +56,20 @@ ctrl-e: end-of-line: go to eol and start editing
 
 ## Use with zsh (Z-shell)
 
+### Use with vanilla zsh
+
 For the moment, from all the things mentioned above, only the bash_aliases file can be used with zsh:
 
 symlink the bash aliases file (will be read when processing the ~/.zshrc file)
 ```bash
 $ ln -s ~/ubuntu_settings/bash/bash_aliases ~/.zsh/rc/aliases
+```
+
+### Use with oh-my-zsh
+
+users are encouraged to define aliases within the ZSH_CUSTOM folder. So, create a link:
+```bash
+$ ln -s ~/ubuntu_settings/bash/bash_aliases $ZSH_CUSTOM/aliases.zsh
 ```
 
 --Yoeri
