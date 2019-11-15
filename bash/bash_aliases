@@ -135,8 +135,10 @@ mkcp() {
 # find file
 alias ff='find . -type f -name'
 
+# ----------------------------------------
 ## Cisco specific
 # vDCM 
+# ----------------------------------------
 alias gobuild='ssh -Y yapts@10.50.201.11'
 alias vdcm-version="ssh root@\$DCM_IP 'rpm -q vdcm' "
 alias zzz=zzz-before
@@ -172,7 +174,7 @@ alias gwd='echo $(pwd) > ~/.tmp/cwd.$USER'
 alias cwd='cd "$(cat ~/.tmp/cwd.$USER)"'
 
 # ------------------------------------
-# Docker alias and function
+# Docker aliases and functions
 # ------------------------------------
 
 # Get latest container ID
@@ -189,7 +191,6 @@ alias dpsa="docker ps -a"
 alias di="docker images"
 alias dim="docker images"
 alias did="docker images -f 'dangling=true' "
-
 
 # Get container IP
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
@@ -227,5 +228,10 @@ dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 # dirs
 alias dv='dirs -v'
 
-# Technicolor
+# ------------------------------------
+# Technicolor aliases and functions
+# ------------------------------------
 alias dwrt='dockerwrt'
+
+alias zendude='function _zendude(){ MSG=${1:-"Sometins goin down boy \!"}; zenity --info --text $MSG --title "Hey Dude !"; };_zendude'
+
