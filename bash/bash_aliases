@@ -12,6 +12,11 @@ alias lh='ls -CFh'
 alias lah='ls -CFAh'
 alias llh='ls -lFh'
 alias llah='ls -lFAh'
+# time ordered
+alias lt='ls -CFt'
+alias lat='ls -CFAt'
+alias llt='ls -lFt'
+alias llat='ls -lFAt'
 
 alias p='pwd'
 alias h='history'
