@@ -111,6 +111,7 @@ fi
 # alias gis='git istatus'
 alias gis='git status'
 alias gib='git branch'
+alias gitnp='git --no-pager'
 
 # json 
 # pretyy-print json
