@@ -241,3 +241,5 @@ alias dwrt='dockerwrt'
 
 alias zendude='function _zendude(){ MSG=${1:-"Sometins goin down boy \!"}; zenity --info --text $MSG --title "Hey Dude !"; };_zendude'
 
+alias lua=lua5.3
+
