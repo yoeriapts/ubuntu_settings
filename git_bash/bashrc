@@ -1,0 +1,14 @@
+alias gis='git status'
+alias vnctransip='ssh -L 5901:localhost 5901 -C -M -f -l yoeri 37.97.184.246'
+alias c='clear'
+
+# bash_aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# z - jump around
+if [ -f ~/git_workspace/z/z.sh ]; then
+    . ~/git_workspace/z/z.sh
+fi
+

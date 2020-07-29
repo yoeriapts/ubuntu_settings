@@ -1,0 +1,500 @@
+explorer .
+ll
+cd ~/bin
+ll
+pngcrush
+z Resour
+find . -type f -iname '*.png' -exec pngcrush -n -q {} ; 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep ".png:"
+pngcrush
+find . -type f -iname '*.png' -exec pngcrush -n -q {} ; 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep ".png:"
+find . -type f -iname '*.png'
+find . -type f -iname '*.png' -exec pngcrush -n -q \{} ; 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep ".png:"
+find . -type f -iname '*.png' -exec pngcrush -n -q {}\; 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep ".png:"
+find . -type f -iname '*.png' | xargs pngcrush -n -q
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep ".png:"2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep ".png:"
+ind . -type f -iname '*.png' | xargs pngcrush -n -q
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep "iCCP: known incorrect sRGB profile" 
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" 
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep 'png:'
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep 'png:'
+pngcrush -ow -rem allb -reduce ./calwiz_snapbp.png
+ll -t | head
+pngcrush -ow -rem allb -
+pngcrush -ow -rem allb -reduce 
+pngcrush -ow -rem allb -reduce ./camctl_get.png
+pngcrush -ow -rem allb -reduce ./camctl_put.png
+pngcrush -ow -rem allb -reduce ./cat_application.png
+pngcrush -ow -rem allb -reduce ./cat_storage.png
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep 'png:'
+pngcrush -ow -rem allb -reduce ./cat_system.png
+pngcrush -ow -rem allb -reduce ./filters_tcor_load_on.png
+pngcrush -ow -rem allb -reduce ./options_camera.png
+pngcrush -ow -rem allb -reduce ./options_ui.png
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep 'png:'
+svn status .
+svn status . | sed -e 's/^M//'
+svn status . | sed -e 's/^M//' | xargs ls
+svn status . | sed -e 's/^M//' | xargs ls -l
+svn status . | sed -e 's/^M//' | xargs explorer 
+explorer calwiz_snapbp.png
+ll c/tmp
+ll /c/tmp
+cd /c/tmp
+cd -
+ll
+svn status .
+explorer .'
+'
+h|grep -i layout
+more layout_min.cfg 
+..
+rgrep layout_min
+svn diff layout_min.cfg
+cd Resources/
+svn diff layout_min.cfg
+ll -t
+ll -t|grep lay
+svn status -q -u .
+h
+ find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 | grep -B 2 "iCCP: known incorrect sRGB profile" | grep 'png:'
+pwd
+svn status .
+svn checkout layout_*
+svn revert layout_*
+svn checkout layout_*
+svn status .
+svn commit -m "Converted all png files that showed a 'iCCP: Known incorrect sRGB profile' error"
+svn log -3
+svn log -l 3
+svn log -l 3 .
+svn up .
+svn log -l 3 .
+0Ïž
+..
+ll
+cd src_sdk
+z src_sdk
+cgrep DbgLog
+cgrep DbgLog|grep void
+hgrep DbgLog|grep void
+cgrep XC_OpenCamera
+...
+cgrep XC_OpenCamera
+cgrep OpenCamera
+cgrep -i OpenCamera
+cgrep -i OpenCamera| grep -v XC_
+cd Src
+cgrep wxLogDebug | grep YAXXX
+cgrep LogDbgW
+cgrep LogDebugW
+cgrep DbgLogW
+hgrep DbgLogW | grep  void
+cgrep -i sometimes
+cd src_sdk
+cgrep -i sometimes
+z XenICs
+ll
+cat Application.log 
+cat Application.log 
+cat Application.log 
+cd /c/Xeneth_wx
+ff x25\*
+rgrep TEMP_DLL
+c
+./Docs/Samples/Device discovery/x25_lua64d.dll
+./Docs/Samples/Enumerate properties/x25_lua64d.dll
+rm ./Docs/Samples/Device discovery/x25_lua64d.dll
+ff x25\*
+rm ./Docs/Samples/Device discovery/x25_lua64d.dll
+rm ./Docs/Samples/Device\ discovery/x25_lua64d.dll
+rm ./Docs/Samples/Enumerate\ properties/x25_lua64d.dll
+rm ./Docs/Samples/GetFrame\ Flags/x25_lua64d.dll
+..
+ll
+cd Xeneth_wx_clean/
+ll
+svn up .
+svn info
+ll
+cd Src
+ll
+..
+ff *\dll
+ff *\exe
+ff \^exe
+ff \*exe
+cd Src
+ll
+z thirdparty
+ll
+ff googletest
+tree -d | grep -i google
+tree -d | grep -i gtest
+tree -ld | grep -i gtest
+tree -fd | grep -i test
+ll
+cd usb3vision/
+ll
+cd tests/
+ll
+..
+..
+ll
+cd /d/yoeri/Dropbox/Xenics/Xenics_Sep2019_Exit/gtest_experiment
+ls
+ll
+git info
+git-info
+git status
+cat .git/description 
+cat .git/config 
+git log
+ll
+ll
+more README.md 
+LL
+..
+ll
+tree googletest-1.7.0/
+ll
+explorer .
+cd gtest_experiment/
+ll
+cd staticlib/msvc/gtest_experiment
+ll
+cat *.props
+f gtest.h
+ff gtest.h
+..
+...
+ff gtest.h
+l
+cd googletest-1.7.0/
+ll
+..
+ff \*props
+npp ./staticlib/msvc/gtest_experiment/gtest_experiment.props
+ll
+cd staticlib/
+ll
+ll include/
+tree src/
+tree tests/
+git status
+git add -u
+git status
+git commit -m 'Changed location of googletest sources.
+Added example test'
+git log 
+git push
+git status
+git info
+...
+cd gtest_experiment/
+l
+ll
+lla
+git pull
+git pull
+cat .git/co
+cat .git/config 
+ff \*py
+ff \*cpp
+ll
+unzip googletest-release-1.7.0
+ll
+mv googletest-release-1.7.0 /c/Xeneth_wx/Src/thirdparty
+cd /c/Xeneth_wx/Src/thirdparty
+ll -t
+mv googletest-release-1.7.0/ googletest-1.7.0/
+ll -t
+svn status .
+svn status . --depth=1
+svn status . -d=1
+svn status help
+svn help status
+svn status . --depth 1
+svn status . --depth immed
+svn status . --depth immediates
+svn status . --depth empty
+svn status . --depth files
+svn status . --depth infinity
+svn status . --depth immediates
+cd Samples
+...
+ll
+cd Docs/Samples/
+ll
+ll -t
+cd LinuxDemo2/
+ll
+tree
+cd Resources
+ll
+h|grep png
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 |
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 
+ll
+ls
+cd Colour\ profiles/
+ll
+find . -type f -iname '*.png' | xargs pngcrush -n -q 2>&1 
+...
+cgrep XC_OpenCamera
+z src_gui
+cgrep XC_OpenCamera
+cgrep OpenCamera
+cgrep -i callback
+cgrep OnStatusCB
+cgrep  XCamera::Create
+..
+cgrep  XCamera::Create
+..
+cgrep  XCamera::Create
+cd /c/
+ll
+cd py37_xtbox/
+rgrep OpenCamera
+pygrep OpenCamera
+ll
+cd Library/
+pygrep OpenCamera
+pwd
+ll
+cd xeneth/
+ll
+more __init__.py 
+more _xeneth.py 
+ll
+svn status _xeneth.py 
+svn log _xeneth.py 
+svn log _xeneth.py 
+ll
+..
+ll
+..
+ll
+cd xtoolbox/
+ll
+more README.md 
+..
+pygrep OpenCamera
+cd xtoolbox/
+pygrep OpenCamera
+..
+svn up .
+npp playground\swinnenb\SNUC\MOD_320150055\NUCexample.py
+npp 'playground\swinnenb\SNUC\MOD_320150055\NUCexample.py'
+npp 'playground\swinnenb\DioneExtractDDR.py'
+npp 'playground\swinnenb\DioneExtractDDR.py'
+npp playground\swinnenb\create_hex_dione.py
+npp 'playground\swinnenb\create_hex_dione.py'
+..
+cd Xeneth_wx/Src/
+cgrep SetThermalSceneInfo
+z Developmen
+ll
+cgrep SetThermalSceneInfo
+more XCamera.h 
+cgrep wxString
+cgrep GetDeviceList
+cgrep GetWidth 
+cd Docs
+cd Samples/
+cgrep XCamera
+cgrep XCamera\(
+cgrep XC_
+z thirdp
+ff hashmap.h
+ll
+svn mv wxwindows/ wxwindows_/
+/c/
+ll
+cd /c
+ll
+cd Xeneth2.7/
+ll
+svn up .
+ll
+ll
+ll
+ff \*sln
+ff xenet\*lib
+ff xenet\*dll
+ff xenethd.dll
+p
+pwd
+cd /c/Xeneth_trunk_wx28/
+svn up .
+svn diff Src\src_sdk\xc_xml2lua.cpp
+explorer .
+svn info Src\src_sdk\xc_xml2lua.cpp
+svn info 'Src\src_sdk\xc_xml2lua.cpp'
+svn log  'Src\src_sdk\xc_xml2lua.cpp'
+svn log -l 5 'Src\src_sdk\xc_xml2lua.cpp'
+ff \*sln
+ff \*sln| grep ENum
+ff \*sln| grep Enum
+cd Docs/Samples/
+ll
+cd Enumerate\ properties/
+ll
+ll ../..
+../..
+cd ../..
+ff XCamera.h
+..
+ff XCamera.h
+cd Docs/Samples/Enumerate\ properties/
+ll
+..
+..
+cd Samples/Enumerate\ properties/
+ll
+../../..
+cd ../../..
+ff xenet\*lib
+ff xenet\*dll
+cd /d/yoeri/Dropbox/Xenics/
+ll
+winmerge ep_w*
+z /c/Xeneth_wx
+ll
+cd Src
+ll
+ll src_sdk/
+ll
+ll thirdparty/
+cd thirdparty/
+ll
+cd /d/yoeri/Dropbox/Xenics/Xenics_Sep2019_Exit/gtest_experiment/staticlib/msvc/gtest_experiment/GoogleTest
+ll
+ll
+..
+ll
+cp GoogleTest /c/Xeneth_wx/Src/thirdparty/googletest-1.7.0/
+cp -r GoogleTest /c/Xeneth_wx/Src/thirdparty/googletest-1.7.0/
+cd /c/Xeneth_wx/Src/thirdparty/googletest-1.7.0/
+ll
+ll msvc
+mv GoogleTest/ msvc_staticlib
+tree msvc_staticlib/
+ff gtest_Main\*
+ff gtest_main\*
+ff gtest_all\*
+cd src
+ff gtest_all\*
+ff gtest-all\*
+cd -
+cd /c/Xeneth_wx/Src/thirdparty/googletest-1.7.0/
+ff \*props
+ff \*.props
+..
+ff \*.props
+cd /d/yoeri/Dropbox/Xenics/Xenics_Sep2019_Exit/gtest_experiment/staticlib/msvc/gtest_experiment/GoogleTest
+..
+ff \*.props
+ll
+...
+..
+ff \*.props
+cd -
+cd msvc/gtest_experiment
+ll
+ff \*vcxproj
+cp gtest_experiment.props /c/Xeneth_wx/Src/thirdparty/googletest-1.7.0/
+tree /c/Xeneth_wx/Src/x64/Debug/
+ls
+ll
+z src_sdk
+cgrep SetPropertyValue
+cgrep SetPropertyValue|grep width
+cgrep SetPropertyValueS
+cgrep SetPropertyValue
+cd $APPDATA
+l
+z src_gui
+ll xc_l
+cd src_sdk
+svn diff  xc_lua_engine.cpp
+explorer ..
+cgrep 10004
+z sdk
+cgrep wx
+cgrep wx|grep -v wxString
+cgrep wx|grep -v wxString|grep -v -i xml
+cgrep WX| grep MAP
+cd src_gui
+cgrep YAXXX
+cgrep YAXXX|wc
+cgrep YAXXX|cgrep -i flag
+cgrep YAXXX
+cgrep YAXXX | grep -v flag
+cgrep YAXXX | grep -i flag
+cgrep 80000000
+cd /c
+ll
+cd Xeneth_trunk_wx28/
+svn info
+svn status
+svn status|grep .cpp
+svn diff Src\src_gui\cameracontroller.cpp
+svn diff 'Src\src_gui\cameracontroller.cpp'
+cd /c/Xeneth_wx/Src/thirdparty/
+svn help commit
+explorer .
+svn info
+...
+svn info
+z wxw
+z wxw*305
+..
+cd wxWidgets305/
+svn status .
+cat build\msw\wx_vc11_custom_build.vcxproj.user
+cat 'build\msw\wx_vc11_custom_build.vcxproj.user'
+cd /c/Xeneth_wx/Src/thirdparty/wxWidgets305/samples/notebook
+svn status .
+z _wx28
+svn status .
+svn status -q -u .
+z Src
+..
+ll *vcxproj
+cd src_gui
+ll *vcxproj
+ll gui*
+grep PATH gui*
+..
+..
+rgrep PATH
+cd Src
+rgrep PATH
+..
+ff \*user
+ff \*user|xargs grep PATH
+ff \*user|xargs -0 grep PATH
+
+alias ff
+find . -type f -name \*user-exec grep PATH {} \;
+find . -type f -name \*user -exec grep PATH {} \;
+find . -type f -name \*user -exec grep -r PATH {} \;
+find . -type f -name \*user -exec grep -R PATH {} \;
+rgrep PATH \*user
+rgrep PATH \*.user
+rgrep PATH *.user
+rgrep PATH
+cd Src
+rgrep PATH
+rgrep PATH | grep \.user
+ff \*.user
+cat ./thirdparty/muparser/build/msvc2013/muparser_example2.vcxproj.user
+ff \*.user | xargs svn add
+svn status 
+svn status |grep ^A
+svn commit -m 'Deliverd vcxproj.user files'
+cd src_gui/
+cat gui.vcxproj.user 
+svn info gui.vcxproj.user
+svn log gui.vcxproj.user

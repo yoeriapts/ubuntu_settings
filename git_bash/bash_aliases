@@ -1,0 +1,245 @@
+# Copy this file to ~/.bash_aliases and make your .bashrc sources it (it should!)
+
+# for every day use
+alias c='clear'
+
+alias l='ls -CF'
+alias la='ls -CFA'
+alias ll='ls -lF'
+alias lla='ls -lFA'
+# 'human' versions of above
+alias lh='ls -CFh'
+alias lah='ls -CFAh'
+alias llh='ls -lFh'
+alias llah='ls -lFAh'
+# time ordered
+alias lt='ls -CFt'
+alias lat='ls -CFAt'
+alias llt='ls -lFt'
+alias llat='ls -lFAt'
+
+alias p='pwd'
+alias h='history'
+alias j='jobs'
+alias more='less'
+alias m='less'
+alias t='tree'
+alias f='find . -name'
+alias t1='tree -L 1'
+alias t2='tree -L 2'
+alias t3='tree -L 3'
+alias t4='tree -L 4'
+alias t5='tree -L 5'
+
+alias \.\.='cd ..'
+alias \.\.\.='cd ../..'
+alias \.\.\.\.='cd ../../..'
+alias \.\.\.\.\.='cd ../../../..'
+alias \.\.\.\.\.\.='cd ../../../../..'
+alias \.\.\.\.\.\.\.='cd ../../../../../..'
+alias \.\.\.\.\.\.\.\.='cd ../../../../../../..'
+alias \.\.\.\.\.\.\.\.\.='cd ../../../../../../../..'
+alias up='cd ..'
+alias upup='cd ../..'
+alias upupup='cd ../../..'
+
+# cd to most recently changed subdir
+alias cdt='cd  "$(\ls -1dt ./*/ | head -n 1)"'
+
+# handle common typo
+alias xs=cd
+
+# Long prompt
+alias lp='export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "'
+# short prompt
+alias sp='export PS1="\u:\W\$ "'
+
+# concatenated date
+alias mydate='date +%F-%H:%M:%S'
+
+# iptables
+alias ipt='sudo iptables'
+
+# relative cd
+CDPATH=$CDPATH:.:..:../..:../../..:../../../..:../../../../..:../../../../../..:$HOME
+
+# gvim
+alias gv='gvim'
+alias gvd='gvimdiff'
+alias gvimer='gvim --remote-silent'
+
+# python
+alias py='python'
+alias py2='python2'
+alias py3='python3'
+
+# gvimpy: load all python sources in this dir and below
+alias gvimpy='gvim `find . -name \*\.py `'
+# gvimpy: load all python sources in this dir and below in seperate tabs
+alias gvimpyt='gvim -p `find . -name \*\.py `'
+
+# Start prompt-toolkit-python in vi mode
+alias ptpy='ptpython --vi'
+
+# C/C++
+# gvimc: load all C/C++ sources in this dir and below
+alias gvimc='gvim `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.cc -print -o -name \*.h -print -o -name \*.hpp -print`'
+# gvimpy: load all C/C++ sources in this dir and below in seperate tabs
+alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.cc -print -o -name \*.h -print -o -name \*.hpp -print`'
+
+# Deploy buildroot builds to nfs server
+alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
+alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
+
+# PyCharm
+# no aliases are used, see one of these:
+# 1) pycharm installation already created 'charm' in /usr/local/bin/charm
+# 2) link it yourself: soft link /bin/pc and|or /bin/pycharm 
+#                      to the right executable on your target
+# alias pycharm="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
+# alias pc="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
+
+# Eclipse / Luna / Mars
+alias luna='cd ~/opt/eclipse && ./eclipse'
+if [ $(hostname) = 'vdcm-dev' ]; then 	# On vdcm-dev at Cisco
+	alias mars='/home/ltielen/eclipse/cpp-mars/eclipse/eclipse -vm /usr/bin &'
+else
+	unalias mars >& /dev/null
+fi
+
+# Git
+# alias gis='git istatus'
+alias gis='git status'
+alias gib='git branch'
+alias gitnp='git --no-pager'
+
+# json 
+# pretyy-print json
+alias pjson='function _pjson(){ python -m json.tool $1 | pygmentize -l json; }; _pjson'
+# example of function in the alias
+alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
+
+# grep
+alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
+alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.cxx -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -n'
+alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -n'
+alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -n'
+alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -n'
+alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -n'
+alias igrep='idlgrep'
+alias lgrep='ls -lhAF | grep -i'
+
+# find
+alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d" " -f 2 '
+
+# make destdir and copy
+mkcp() {
+    test -d "$2" || mkdir -p "$2"
+    cp -r "$1" "$2"
+}
+
+# find file
+alias ff='find . -type f -name'
+
+# ----------------------------------------
+## Cisco specific
+# vDCM 
+# ----------------------------------------
+alias gobuild='ssh -Y yapts@10.50.201.11'
+alias vdcm-version="ssh root@\$DCM_IP 'rpm -q vdcm' "
+alias zzz=zzz-before
+
+# Docker
+alias d=docker
+
+# printf 'HOSTNAME = %s\n' $HOSTNAME
+
+# case $HOSTNAME in
+#  (vdcm-dev) echo "we're on vdcm-dev";
+#    # mur = make-upload-restart
+#    alias mur='make -j 8 && make upload && dcm-ssh systemctl restart vdcm.target'
+#	alias zzz=zzz-vdcm-dev;;
+#  (gpk-ads-101) echo "we're on gpk-ads-101 (aurora)";
+#	alias zzz=zzz-gps-ads-101;;
+#  (*) echo "We're on an UNKNOWN host !!!";
+#	alias zzz=zzz-unknown-host;;
+# esac
+
+# Bash internal options
+#shopt -s histverify
+
+# Environment variables
+# These are not aliases and should eventualy move to another file!
+export SVN_EDITOR=vim
+
+# Grab the current working directory, in this terminal
+# Silently make a working dir
+mkdir -p ~/.tmp
+alias gwd='echo $(pwd) > ~/.tmp/cwd.$USER'
+# Change the current working directory in the NEW terminal
+alias cwd='cd "$(cat ~/.tmp/cwd.$USER)"'
+
+# ------------------------------------
+# Docker aliases and functions
+# ------------------------------------
+
+# Get latest container ID
+alias dl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# Get process included stop container
+alias dpa="docker ps -a"
+alias dpsa="docker ps -a"
+
+# Get images
+alias di="docker images"
+alias dim="docker images"
+alias did="docker images -f 'dangling=true' "
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+# Stop all containers
+dstop() { docker stop $(docker ps -a -q); }
+
+# Remove all containers
+drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# Remove all images
+dri() { docker rmi $(docker images -q); }
+
+# Dockerfile build, e.g., $dbu tcnksm/test 
+dbu() { docker build -t=$1 .; }
+
+# Show all alias related docker
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+# Bash into running container
+dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
+
+# dirs
+alias dv='dirs -v'
+
+# ------------------------------------
+# Technicolor aliases and functions
+# ------------------------------------
+alias dwrt='dockerwrt'
+
+alias zendude='function _zendude(){ MSG=${1:-"Sometins goin down boy \!"}; zenity --info --text $MSG --title "Hey Dude !"; };_zendude'
+
+alias lua=lua5.3
+
