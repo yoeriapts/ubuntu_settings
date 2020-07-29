@@ -12,9 +12,10 @@ $ cd ~
 $ git clone https://github.com/yoeriapts/ubuntu_settings.git
 ```
 
-Clone the z - jump around repo
+Clone the 'z - jump around' repo
 ```bash
-$ mkdir ~/git_workspae
-$ git clone https://github.com/rupa/z.git ~/git_workspace
+$ mkdir ~/git_workspace
+$ git clone https://github.com/rupa/z.git ~/git_workspace/z
 ```
+
 
