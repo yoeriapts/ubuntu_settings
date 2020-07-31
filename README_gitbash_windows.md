@@ -36,3 +36,7 @@ $ ln ~/ubuntu_settings/bash/bash_aliases .bash_aliases
 
 Start a new git-bash session to activate the new settings
 
+copy the ~/ubuntu_Settings/git_bash/bin/* to ~/bin 
+note that ~/bin is already in your $PATH
+
+
