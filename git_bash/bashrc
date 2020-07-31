@@ -11,4 +11,3 @@ fi
 if [ -f ~/git_workspace/z/z.sh ]; then
     . ~/git_workspace/z/z.sh
 fi
-
