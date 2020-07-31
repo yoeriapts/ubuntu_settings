@@ -18,4 +18,21 @@ $ mkdir ~/git_workspace
 $ git clone https://github.com/rupa/z.git ~/git_workspace/z
 ```
 
+When freshly installed, git-bash only has a `.bash_history` file
+```bash
+$ ll .bash*
+-rw-r--r-- 1 yoeri 197610 239 jul 30 15:07 .bash_history
+```
+
+link to files from ~/ubuntu_settings/git_bash
+```bash
+$ ln ~/ubuntu_settings/git_bash/bash_profile .bash_profile
+$ ln ~/ubuntu_settings/git_bash/bashrc .bashrc
+```
+link to aliases from ~/ubuntu_settings/bash
+```bash
+$ ln ~/ubuntu_settings/bash/bash_aliases .bash_aliases
+```
+
+Start a new git-bash session to activate the new settings
 
