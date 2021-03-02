@@ -260,3 +260,12 @@ function stitle(){
   PS1="${PS1_BACK}${TITLE}"
 }
 
+# Info on process specified by name (loose match)
+function pg() {
+    ps -fp $(pgrep -d, $1)
+}
+
+# Info on process specified by name (exact match)
+function pgx() {
+    ps -fp $(pgrep -d, -x $1)
+}
