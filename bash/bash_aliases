@@ -138,8 +138,11 @@ mkcp() {
     cp -r "$1" "$2"
 }
 
-# find file
-alias ff='find . -type f -name'
+# find file or link
+alias ff='find . -type f,l -name'
+# find dir
+alias fd='find . -type d -name'
+
 
 # ----------------------------------------
 ## Cisco specific
@@ -269,3 +272,24 @@ function pg() {
 function pgx() {
     ps -fp $(pgrep -d, -x $1)
 }
+
+# uncrust; copied from amxdev container
+uncrust () 
+{ 
+    CONF=$1;
+    if [[ -z $CONF ]]; then
+        CONF="uncrust.conf";
+    fi;
+    find . -name "*.c" > files.txt;
+    find . -name "*.h" >> files.txt;
+    uncrustify --replace --no-backup -c $CONF -F files.txt;
+    rm files.txt
+}
+
+# pnl: print '$1' new lines (to seperate output)
+pnl()
+{
+    NMBR=${1:-10};
+    printf %${NMBR}s | tr " " "\n"; 
+};
+
