@@ -293,3 +293,13 @@ pnl()
     printf %${NMBR}s | tr " " "\n"; 
 };
 
+# indox = In DOcker eXecute 
+# usage: indox containername command
+# example: indox distil_srcs make menuconfig
+indox () {
+    CONTAINER=$1
+    set -- "${@:2}"
+    docker exec -ti -u $USER ${CONTAINER} /bin/bash -c cd $PWD && $@
+}
+
+
