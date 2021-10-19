@@ -302,4 +302,12 @@ indox () {
     docker exec -ti -u $USER ${CONTAINER} /bin/bash -c cd $PWD && $@
 }
 
+#
+# ssh to OpwnWrt target with root/sah 
+#
+ssah () 
+{ 
+    sshpass -p sah ssh root@$1
+}
+
 
