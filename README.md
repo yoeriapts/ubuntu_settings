@@ -5,6 +5,5 @@ This repo contains
 - settings for bash,
 - vimrc files and plugins
 - set of utility scripts in 'bin'
-- set of utility scripts in 'bin'
-- tips on using git_bash
+- [tips on using 'git_bash' on Windows](README_gitbash_windows.md)
 

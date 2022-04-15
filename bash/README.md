@@ -24,13 +24,20 @@ if [ -f ~/.bash_aliases ]; then
 fi
 ```
 
-To use the 'z' (jump around) utility add the following to .bashrc
-(check location of z!)
+To use the 'z' (jump around) utility;
+
+First clone the 'z - jump around' repo:
+```bash
+$ mkdir ~/workspace
+$ git clone https://github.com/rupa/z.git ~/workspace/z
+```
+
+then add the following to .bashrc (check location of z!)
 
 ```bash
 # z - jump around
-if [ -f ~/environ/z/z.sh ]; then
-    . ~/environ/z/z.sh
+if [ -f ~/workspace/z/z.sh ]; then
+    . ~/workspace/z/z.sh
 fi
 ```
 

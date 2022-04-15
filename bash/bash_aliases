@@ -17,6 +17,8 @@ alias lt='ls -CFt'
 alias lat='ls -CFAt'
 alias llt='ls -lFt'
 alias llat='ls -lFAt'
+# ps
+alias pse='ps -elF'
 
 alias p='pwd'
 alias h='history'
@@ -87,10 +89,6 @@ alias gvimc='gvim `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.c
 # gvimpy: load all C/C++ sources in this dir and below in seperate tabs
 alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name \*.cc -print -o -name \*.h -print -o -name \*.hpp -print`'
 
-# Deploy buildroot builds to nfs server
-alias deploy='sudo rm -rf /srv/nfs_buildroot_latest; sudo mkdir -p /srv/nfs_buildroot_latest; sudo tar xvf ./output/images/rootfs.tar -C /srv/nfs_buildroot_latest'
-alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo tar -jxvf /home/yoeri/git_workspace/OneDoor/do/codebench.arm.32-atsama5/rootfs_top/rootfs.bz2 -C /srv/nfs_test'
-
 # PyCharm
 # no aliases are used, see one of these:
 # 1) pycharm installation already created 'charm' in /usr/local/bin/charm
@@ -100,12 +98,7 @@ alias deploy_one='sudo rm -rf /srv/nfs_test; sudo mkdir -p /srv/nfs_test; sudo t
 # alias pc="~/ws/opt/pycharm-community-2016.2/bin/pycharm.sh"
 
 # Eclipse / Luna / Mars
-alias luna='cd ~/opt/eclipse && ./eclipse'
-if [ $(hostname) = 'vdcm-dev' ]; then 	# On vdcm-dev at Cisco
-	alias mars='/home/ltielen/eclipse/cpp-mars/eclipse/eclipse -vm /usr/bin &'
-else
-	unalias mars >& /dev/null
-fi
+# Removed !
 
 # Git
 # alias gis='git istatus'
@@ -120,14 +113,16 @@ alias pjson='function _pjson(){ python -m json.tool $1 | pygmentize -l json; }; 
 alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
 
 # grep
-alias rgrep='grep -R -I -n' # grep recursive, don't match binary files, print line numbers
-alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.cxx -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -n'
-alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -n'
-alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -n'
-alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -n'
-alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -n'
+alias rgrep='grep -E -R -I -n' # grep recursive, don't match binary files, print line numbers
+alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.cxx -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -E -n'
+alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -E -n'
+alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -E -n'
+alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -E -n'
+alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -E -n'
 alias igrep='idlgrep'
-alias lgrep='ls -lhAF | grep -i'
+alias lgrep='ls -lhAF | grep -E -i'
+alias odlgrep='find . \( -name \*\.odl \) -a -type f -print0 | xargs -0 grep -E -n'
+alias ogrep='odlgrep'
 
 # find
 alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d" " -f 2 '
@@ -138,8 +133,11 @@ mkcp() {
     cp -r "$1" "$2"
 }
 
-# find file
-alias ff='find . -type f -name'
+# find file or link
+alias ff='find . -type f,l -name'
+# find dir
+alias fd='find . -type d -name'
+
 
 # ----------------------------------------
 ## Cisco specific
@@ -241,7 +239,80 @@ alias dwrt='dockerwrt'
 
 alias zendude='function _zendude(){ MSG=${1:-"Sometins goin down boy \!"}; zenity --info --text $MSG --title "Hey Dude !"; };_zendude'
 
-alias lua=lua5.3
+#alias lua=lua5.3
+
+
+# ---------------
+# Usefull goodies
+# ---------------
+
+
+function stitle(){
+
+  if [ -z "$PS1_BACK" ];  # set backup if it is empty
+    then
+      PS1_BACK="$PS1"
+  fi
+
+  TITLE="\[\e]0;$*\a\]"
+  PS1="${PS1_BACK}${TITLE}"
+}
+
+# Info on process specified by name (loose match)
+function pg() {
+    ps -fp $(pgrep -d, $1)
+}
+
+# Info on process specified by name (exact match)
+function pgx() {
+    ps -fp $(pgrep -d, -x $1)
+}
+
+# uncrust; copied from amxdev container
+uncrust () 
+{ 
+    CONF=$1;
+    if [[ -z $CONF ]]; then
+        CONF="uncrust.conf";
+    fi;
+    find . -name "*.c" > files.txt;
+    find . -name "*.h" >> files.txt;
+    uncrustify --replace --no-backup -c $CONF -F files.txt;
+    rm files.txt
+}
+
+# pnl: print '$1' new lines (to seperate output)
+pnl()
+{
+    NMBR=${1:-10};
+    printf %${NMBR}s | tr " " "\n"; 
+};
+
+# indox = In DOcker eXecute 
+# usage: indox containername command
+# example: indox distil_srcs make menuconfig
+indox () {
+    CONTAINER=$1
+    set -- "${@:2}"
+    docker exec -ti -u $USER ${CONTAINER} /bin/bash -c cd $PWD && $@
+}
+
+#
+# ssh to OpwnWrt target with root/sah 
+#
+ssah () 
+{ 
+    sshpass -p sah ssh root@$1
+}
+
+lion ()
+{
+    str=$1;
+    fname=${str%:*};
+    line=${str#*:};
+    echo "clion --line $line $fname";
+    clion --line $line $fname
+}
 
 # Jupyter notebooks
 alias jup_rob="conda activate ehb_robotics && cd ~/workspace && jupyter notebook"
