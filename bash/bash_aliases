@@ -243,3 +243,5 @@ alias zendude='function _zendude(){ MSG=${1:-"Sometins goin down boy \!"}; zenit
 
 alias lua=lua5.3
 
+# Jupyter notebooks
+alias jup_rob="conda activate ehb_robotics && cd ~/workspace && jupyter notebook"

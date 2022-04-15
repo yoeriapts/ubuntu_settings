@@ -8,6 +8,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # z - jump around
-if [ -f ~/git_workspace/z/z.sh ]; then
-    . ~/git_workspace/z/z.sh
+if [ -f ~/workspace/z/z.sh ]; then
+    . ~/workspace/z/z.sh
 fi
+
+# for Anaconda
+. /c/ProgramData/Anaconda3/etc/profile.d/conda.sh
