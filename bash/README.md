@@ -16,7 +16,7 @@ $ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
 ```
 
 
-To use the 'bash_aliases', add the following to .bashrc
+To use the 'bash_aliases', add the following to .bashrc (Note: it may already be in there!)
 ```bash
 # bash_aliases
 if [ -f ~/.bash_aliases ]; then
