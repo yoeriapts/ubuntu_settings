@@ -316,3 +316,5 @@ lion ()
 
 # Jupyter notebooks
 alias jup_rob="conda activate ehb_robotics && cd ~/workspace && jupyter notebook"
+alias jup_lab="conda activate juplab && cd ~/workspace && jupyter lab"
+
