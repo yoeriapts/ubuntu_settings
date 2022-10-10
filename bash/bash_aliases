@@ -322,3 +322,8 @@ alias jup_lab="conda activate juplab && cd ~/workspace && jupyter lab"
 # xdg-open - opens a file or URL in the user's preferred application
 alias xo="xdg-open" 
 
+# Conda aliases
+alias coa="conda activate"
+alias cod="conda deactivate"
+alias coel="conda env list"
+
