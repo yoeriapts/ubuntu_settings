@@ -2,19 +2,26 @@
 
 How to use these 'bash' settings:
 
-Clone this repo to ~/ubuntu_settings (default location):
+Clone this repo using git/ssh to ~/ubuntu_settings (default location):
 ```bash
-$ git clone https://github.com/yoeriapts/ubuntu_settings.git
+$ git clone git@github.com:yoeriapts/ubuntu_settings.git
 ```
 
-Create some symlinks
+Create a symlink:
 ```bash
 $ cd ~
 $ ln -s ~/ubuntu_settings/bash/bash_aliases .bash_aliases
-$ ln -s ~/ubuntu_settings/bash/gitprompt .gitprompt
-$ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
 ```
 
+If you want to use gitprompt:
+```shell
+$ ln -s ~/ubuntu_settings/bash/gitprompt .gitprompt
+```
+
+If you want to use some special key-bindings:
+```shell
+$ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
+```
 
 To use the 'bash_aliases', add the following to .bashrc (Note: it may already be in there!)
 ```bash
