@@ -328,4 +328,7 @@ alias cod="conda deactivate"
 alias coel="conda env list"
 
 # swap ssh config files
+alias sscya='cd ~/.ssh/; cp config.ya config; cat config; cd -'
+alias sschk='cd ~/.ssh/; cp config.hk config; cat config; cd -'
+
 
