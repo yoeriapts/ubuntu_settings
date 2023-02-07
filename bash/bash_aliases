@@ -124,8 +124,13 @@ alias lgrep='ls -lhAF | grep -E -i'
 alias odlgrep='find . \( -name \*\.odl \) -a -type f -print0 | xargs -0 grep -E -n'
 alias ogrep='odlgrep'
 
-# find
+# find most recent file
 alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d" " -f 2 '
+
+# sort files by size
+# https://unix.stackexchange.com/questions/88065/sorting-files-according-to-size-recursively
+alias sortfbs='find . -type f -printf "%s\t%p\n" | sort -nr'
+alias sortfbt='find $DIR -type f -printf "%T@ %p\n" | sort -nr | cut -d" " -f 2 '
 
 # make destdir and copy
 mkcp() {
@@ -292,6 +297,9 @@ lion ()
 # Jupyter notebooks
 alias jup_rob="conda activate ehb_robotics && cd ~/workspace && jupyter notebook"
 alias jup_lab="conda activate juplab && cd ~/workspace && jupyter lab"
+
+# NoteBook Clear Output cells; use $ nbco notebookname.ipynb
+alias nbco="jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace"
 
 # Ubuntu specific
 # xdg-open - opens a file or URL in the user's preferred application
