@@ -119,10 +119,13 @@ alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xarg
 alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -E -n'
 alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -E -n'
 alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -E -n'
-alias igrep='idlgrep'
+#alias igrep='idlgrep'
 alias lgrep='ls -lhAF | grep -E -i'
 alias odlgrep='find . \( -name \*\.odl \) -a -type f -print0 | xargs -0 grep -E -n'
 alias ogrep='odlgrep'
+
+# ipynb grep, uses nbgrep
+alias igrep='find . \( -name \*\.ipynb \) -a -type f -print0 | xargs -0 nbgrep'
 
 # find most recent file
 alias findlatest='find $DIR -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d" " -f 2 '
