@@ -105,6 +105,7 @@ alias gvimct='gvim -p `find . -name \*.c -print -o -name \*.cpp -print -o -name 
 alias gis='git status'
 alias gib='git branch'
 alias gitnp='git --no-pager'
+alias gil='git log --name-status'
 
 # json 
 # pretyy-print json
