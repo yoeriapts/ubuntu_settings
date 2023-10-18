@@ -298,6 +298,51 @@ lion ()
     clion --line $line $fname
 }
 
+tree_nbco ()
+# tree NoteBook Clear Output
+# Clears output cells from all python notebooks in th ecurrent file-tree
+{
+    NBS=$(find . -name \*.ipynb)
+
+    echo 'Processing following files:'
+    for nb in $NBS; 
+        do 
+            echo '    '$nb; 
+        done
+
+    for nb in $NBS; 
+        do 
+            echo 'Processing' $nb; 
+	    jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace $nb
+        done
+
+}
+
+git_nbco ()
+# git NoteBook Clear Output
+# Clears output cells from python notebooks when they are in the cache (ready to be commited)
+# Use this command to clean notebooks before committing them into a repo
+{
+    CWD=$PWD
+    cd $(git rev-parse --show-toplevel);
+
+    NBS=$(git diff --cached --name-only | grep ipynb$)
+
+    echo 'Processing following files:'
+    for nb in $NBS; 
+        do 
+            echo '    '$nb; 
+        done
+
+    for nb in $NBS; 
+        do 
+            echo 'Processing' $nb; 
+	    jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace $nb
+        done
+#
+    cd $CWD
+}
+
 # Jupyter notebooks
 alias jup_rob="conda activate ehb_robotics && cd ~/workspace && jupyter notebook"
 alias jup_lab="conda activate juplab && cd ~/workspace && jupyter lab"
