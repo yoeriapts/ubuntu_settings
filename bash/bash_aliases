@@ -118,6 +118,7 @@ alias rgrep='grep -E -R -I -n' # grep recursive, don't match binary files, print
 alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.cxx -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -E -n'
 alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -E -n'
 alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -E -n'
+alias mgrep='find . \( -name \*\.m \) -a -type f -print0 | xargs -0 grep -E -n'
 alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -E -n'
 alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -E -n'
 #alias igrep='idlgrep'
