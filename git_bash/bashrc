@@ -2,6 +2,17 @@ alias gis='git status'
 alias vnctransip='ssh -L 5901:localhost 5901 -C -M -f -l yoeri 37.97.184.246'
 alias c='clear'
 
+# lf tool on ConEmu/Windows
+if [ -f /usr/bin/winpty ]; then
+    alias lf='winpty lf'
+fi
+
+# lf tool - general
+LFCD="/c/Users/yoeri/.config/lf/lfcd.sh"   #  path to lfcd.sh, make sure to use absolute path
+if [ -f "$LFCD" ]; then
+    source "$LFCD"
+fi
+
 # bash_aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
