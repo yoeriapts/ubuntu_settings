@@ -366,3 +366,6 @@ alias coajh="conda activate juplab_hk"
 alias sscya='cd ~/.ssh/; cp config.ya config; cat config; cd -'
 alias sschk='cd ~/.ssh/; cp config.hk config; cat config; cd -'
 
+# psudo, see https://stackoverflow.com/questions/44726377/sudo-python-command-not-found
+psudo() { sudo env PATH="$PATH" "$@"; } 
+
