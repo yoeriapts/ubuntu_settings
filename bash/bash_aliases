@@ -369,3 +369,23 @@ alias sschk='cd ~/.ssh/; cp config.hk config; cat config; cd -'
 # psudo, see https://stackoverflow.com/questions/44726377/sudo-python-command-not-found
 psudo() { sudo env PATH="$PATH" "$@"; } 
 
+####
+# Python venv related
+####
+#
+## vba: short for 'source .venv/bin/activate' will also deactivate existing venv or conda env
+vba() {
+  command -v conda >/dev/null 2>&1 && conda deactivate
+  command -v deactivate >/dev/null 2>&1 && deactivate
+ 
+  if [ -f .venv/bin/activate ]; then
+     . .venv/bin/activate
+     return
+  fi 
+  
+  if [ -f ./venv/bin/activate ]; then
+     . ./venv/bin/activate
+     return
+  fi 
+}
+
