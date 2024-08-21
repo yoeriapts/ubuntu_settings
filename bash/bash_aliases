@@ -389,3 +389,8 @@ vba() {
   fi 
 }
 
+####
+# Ubuntu multipass
+####
+alias mp=multipass
+
