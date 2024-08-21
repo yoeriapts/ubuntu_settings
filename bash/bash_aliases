@@ -214,8 +214,8 @@ dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/[
 # Bash into running container
 dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 
-# dirs
-alias dv='dirs -v'
+# Run ctop container
+alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
 # ------------------------------------
 # Technicolor aliases and functions
@@ -231,6 +231,8 @@ alias zendude='function _zendude(){ MSG=${1:-"Sometins goin down boy \!"}; zenit
 # Usefull goodies
 # ---------------
 
+# dirs
+alias dv='dirs -v'
 
 function stitle(){
 
