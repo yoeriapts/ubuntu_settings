@@ -1,0 +1,34 @@
+####
+# Configuration for shared history across terminals
+####
+# from https://news.ycombinator.com/item?id=3534419
+#
+# Append to ~/.bash_history instead of overwriting it -- this stops terminals
+# from overwriting one another's histories.
+shopt -s histappend
+# Only load the last 10000 lines from your ~/.bash_history -- if you need an
+# older entry, just grep that file.
+HISTSIZE=10000
+# Don't truncate ~/.bash_history -- keep all your history, ever.
+HISTFILESIZE=-1
+# When displaying the history, add a timestamp to each entry
+HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S  "
+# Don't remember trivial 1- and 2-letter commands.
+HISTIGNORE=?:??
+# ignoreboth is shorthand for ignorespace and ignoredups 
+#   ignorespace: lines which begin with a spacechar are not saved
+#   ignoredups: causes lines matching the previous history entry to not be saved.
+HISTCONTROL=ignoredups
+# Save each history entry immediately (protects against terminal crashes/
+# disconnections, and interleaves commands from multiple terminals in correct
+# chronological order).
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# ideas
+# Add automatic history rotation, ie once every day:
+#   check if a rotation file for today exists, if not create one
+#
+# Add a command to 'squeeze' the history; ie remove lines that are identical
+#   remove the oldest one!
+#   Do not squeeze the last n files, because there you may need the full order of commands
+

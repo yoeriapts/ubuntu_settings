@@ -117,7 +117,7 @@ alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
 alias rgrep='grep -E -R -I -n' # grep recursive, don't match binary files, print line numbers
 alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.cxx -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -E -n'
 alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -E -n'
-alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -E -n'
+#alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -E -n'
 alias mgrep='find . \( -name \*\.m \) -a -type f -print0 | xargs -0 grep -E -n'
 alias xmlgrep='find . \( -name \*\.xml \) -a -type f -print0 | xargs -0 grep -E -n'
 alias idlgrep='find . \( -name \*\.idl \) -a -type f -print0 | xargs -0 grep -E -n'
@@ -395,4 +395,48 @@ vba() {
 # Ubuntu multipass
 ####
 alias mp=multipass
+
+####
+# functions to search through files
+####
+
+# Function to search for a pattern within files matching a given filename regex, with colored output, excluding hidden directories
+function rgrep_filename_color() {
+
+  if [ $# -ne 2 ]; then
+    echo "Error: This function requires exactly two arguments: search_pattern and filename_regex." >&2  # Print error to stderr
+    return 1  # Indicate failure
+  fi
+
+  local pattern="$1"
+  local filename_regex="$2"
+
+  echo "Looking for '"$pattern"' in '"$filename_regex"'"
+  # echo "pattern: " $pattern
+  # echo "filename_regex: " $filename_regex
+  # sleep 1
+
+  # Combine grep and find for recursive search with filename filtering and colored output, excluding hidden directories
+  find . -type f -regextype posix-egrep -regex "$filename_regex" \
+       ! -path '*/\.*' -exec grep -HrnI --color=always "$pattern" {} +
+}
+
+
+# Function to search for a pattern within Python (.py) files, with colored output, excluding hidden directories
+function pygrep() {
+  local pattern="$1"
+
+  # Call rgrep_filename_color with the pattern and a regex for Python files
+  rgrep_filename_color "$pattern" ".*\.py$" 
+}
+# Examples: pygrep 'File\|file'
+
+
+# Function to search for a pattern within Markdown (.md) files, with colored output, excluding hidden directories
+function mdgrep() {
+  local pattern="$1"
+
+  # Call rgrep_filename_color with the pattern and a regex
+  rgrep_filename_color "$pattern" ".*\.md$" 
+}
 
