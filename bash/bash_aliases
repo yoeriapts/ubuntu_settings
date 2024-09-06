@@ -169,10 +169,10 @@ alias cwd='cd "$(cat ~/.tmp/cwd.$USER)"'
 # Get latest container ID
 alias dl="docker ps -l -q"
 
-# Get container process
+# Get container processes
 alias dps="docker ps"
 
-# Get process included stop container
+# Get processes including stopped containers
 alias dpa="docker ps -a"
 alias dpsa="docker ps -a"
 
