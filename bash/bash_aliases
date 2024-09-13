@@ -106,6 +106,7 @@ alias gis='git status'
 alias gib='git branch'
 alias gitnp='git --no-pager'
 alias gil='git log --name-status'
+alias gilo='git log --oneline'
 
 # json 
 # pretyy-print json
