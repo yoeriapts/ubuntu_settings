@@ -247,13 +247,8 @@ function stitle(){
 }
 
 # Info on process specified by name (loose match)
-function pg() {
-    ps -fp $(pgrep -d, $1)
-}
-
-# Info on process specified by name (exact match)
-function pgx() {
-    ps -fp $(pgrep -d, -x $1)
+function ppgrep() {
+    pgrep "$1" | xargs -r ps -f fp
 }
 
 # uncrust; copied from amxdev container
@@ -440,4 +435,22 @@ function mdgrep() {
   # Call rgrep_filename_color with the pattern and a regex
   rgrep_filename_color "$pattern" ".*\.md$" 
 }
+
+
+# Function and alias that recursively traverse a given directory, 
+# and for each directory give the name of the most recent file in it.
+#
+function newest_file_per_dir() {
+    local dir="$1"
+
+    find "$dir" -type d -exec bash -c '
+        newest=$(find "$1" -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-)
+        if [ -n "$newest" ]; then
+            echo "$1: $newest"
+        fi
+    ' sh {} \;
+}
+
+alias newest_files='newest_file_per_dir'
+
 
