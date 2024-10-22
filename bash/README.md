@@ -7,23 +7,13 @@ Clone this repo using git/ssh to ~/ubuntu_settings (default location):
 $ git clone git@github.com:yoeriapts/ubuntu_settings.git
 ```
 
-Create a symlink:
+To use the `bash_aliases`, create a symlink:
+
 ```bash
 $ cd ~
 $ ln -s ~/ubuntu_settings/bash/bash_aliases .bash_aliases
 ```
-
-If you want to use gitprompt:
-```shell
-$ ln -s ~/ubuntu_settings/bash/gitprompt .gitprompt
-```
-
-If you want to use some special key-bindings:
-```shell
-$ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
-```
-
-To use the 'bash_aliases', add the following to .bashrc (Note: it may already be in there!)
+and add the following to `.bashrc` (Note: it may already be in there!)
 ```bash
 # bash_aliases
 if [ -f ~/.bash_aliases ]; then
@@ -31,6 +21,18 @@ if [ -f ~/.bash_aliases ]; then
 fi
 ```
 
+If you want to use the history manipulation defined in `bash_extras`, create a symlink:
+```bash
+$ cd ~
+$ ln -s ~/ubuntu_settings/bash/bash_extras .bash_extras
+```
+and add the following to `.bashrc` 
+```bash
+# bash_aliases
+if [ -f ~/.bash_extras ]; then
+    . ~/.bash_extras
+fi
+```
 To use the 'z' (jump around) utility;
 
 First clone the 'z - jump around' repo:
@@ -48,7 +50,15 @@ if [ -f ~/workspace/z/z.sh ]; then
 fi
 ```
 
-To use 'gitprompt' add the following to .bashrc
+If you want to use gitprompt:
+```shell
+$ ln -s ~/ubuntu_settings/bash/gitprompt .gitprompt
+```
+If you want to use some special key-bindings:
+```shell
+$ ln -s ~/ubuntu_settings/bash/inputrc .inputrc
+```
+and add the following to .bashrc
 ```bash
 # Git prompt
 if [ -f ~/.gitprompt ]; then
