@@ -145,7 +145,7 @@ mkcp() {
 }
 
 # find file or link
-alias ff='find . -type f,l -name'
+alias ff='find . -type f -name'
 # find dir
 alias fd='find . -type d -name'
 
@@ -452,5 +452,27 @@ function newest_file_per_dir() {
 }
 
 alias newest_files='newest_file_per_dir'
+
+# Wrapper function for the ranger Terminal File Manager
+# from https://github.com/ranger/ranger/wiki/Integration-with-other-programs#bash-compatible-shells-1
+#
+# With this, your shell changes the directory only when you quit ranger with keybinding capital Q.
+#
+function ranger {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+    )
+    
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    command rm -f -- "$tempfile" 2>/dev/null
+}
+
 
 
