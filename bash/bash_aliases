@@ -453,6 +453,7 @@ function newest_file_per_dir() {
 
 alias newest_files='newest_file_per_dir'
 
+<<<<<<< Updated upstream
 # Wrapper function for the ranger Terminal File Manager
 # from https://github.com/ranger/ranger/wiki/Integration-with-other-programs#bash-compatible-shells-1
 #
@@ -476,3 +477,10 @@ function ranger {
 
 
 
+=======
+# Function to find most recent file in a dir-tree
+function newest_file() {
+    local dir="$1"
+    find "$dir" -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-
+}
+>>>>>>> Stashed changes
