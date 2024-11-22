@@ -437,6 +437,15 @@ function mdgrep() {
 }
 
 
+# Function to search for a pattern within Markdown (.md) files, with colored output, excluding hidden directories
+function jgrep() {
+  local pattern="$1"
+
+  # Call rgrep_filename_color with the pattern and a regex
+  rgrep_filename_color "$pattern" ".*\.json$" 
+}
+
+
 # Function and alias that recursively traverse a given directory, 
 # and for each directory give the name of the most recent file in it.
 #
@@ -453,7 +462,14 @@ function newest_file_per_dir() {
 
 alias newest_files='newest_file_per_dir'
 
-<<<<<<< Updated upstream
+
+# Function to find most recent file in a dir-tree
+function newest_file() {
+    local dir="$1"
+    find "$dir" -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-
+}
+
+
 # Wrapper function for the ranger Terminal File Manager
 # from https://github.com/ranger/ranger/wiki/Integration-with-other-programs#bash-compatible-shells-1
 #
@@ -476,11 +492,3 @@ function ranger {
 }
 
 
-
-=======
-# Function to find most recent file in a dir-tree
-function newest_file() {
-    local dir="$1"
-    find "$dir" -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-
-}
->>>>>>> Stashed changes
