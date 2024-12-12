@@ -413,7 +413,8 @@ function rgrep_filename_color() {
   # sleep 1
 
   # Combine grep and find for recursive search with filename filtering and colored output, excluding hidden directories
-  find . -type f -regextype posix-egrep -regex "$filename_regex" \
+  #find . -type f -regextype posix-egrep -regex "$filename_regex" \
+  find . -type f -iregex "$filename_regex" \
        ! -path '*/\.*' -exec grep -HrnI --color=always "$pattern" {} +
 }
 
@@ -437,12 +438,30 @@ function mdgrep() {
 }
 
 
-# Function to search for a pattern within Markdown (.md) files, with colored output, excluding hidden directories
+# Function to search for a pattern within json (.json) files, with colored output, excluding hidden directories
 function jgrep() {
   local pattern="$1"
 
   # Call rgrep_filename_color with the pattern and a regex
   rgrep_filename_color "$pattern" ".*\.json$" 
+}
+
+
+# Function to search for a pattern within C/C++ files, with colored output, excluding hidden directories
+function ccgrep() {
+  local pattern="$1"
+
+  # Call rgrep_filename_color with the pattern and a regex
+  rgrep_filename_color "$pattern" ".*\.\(c\|cc\|cpp\|cxx\|h\|hpp\)$" 
+}
+
+
+# Function to search for a pattern within C/C++ headers, with colored output, excluding hidden directories
+function hhgrep() {
+  local pattern="$1"
+
+  # Call rgrep_filename_color with the pattern and a regex
+  rgrep_filename_color "$pattern" ".*\.\(h\|hpp\)$" 
 }
 
 
