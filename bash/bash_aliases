@@ -218,6 +218,10 @@ dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 # Run ctop container
 alias ctop='docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 
+# Use the runlike container to see original commandline used to start container
+# Use it: $ runlike CONTAINER
+alias runlike="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike"
+
 # ------------------------------------
 # Technicolor aliases and functions
 # ------------------------------------
@@ -508,6 +512,21 @@ function ranger {
         cd -- "$(cat "$tempfile")" || return
     fi
     command rm -f -- "$tempfile" 2>/dev/null
+}
+
+# Function to remove dangling Docker images (drdi = Docker Remove Dangling Images)
+drdi() {
+  dangling_images=$(docker images -f dangling=true -q --no-trunc)
+
+  # Check if there are any dangling images
+  if [[ -n "$dangling_images" ]]; then
+    echo "Removing the following dangling images:"
+    echo "$dangling_images"
+    docker rmi $dangling_images
+    echo "Dangling images removed."
+  else
+    echo "No dangling images found."
+  fi
 }
 
 
