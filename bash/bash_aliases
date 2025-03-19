@@ -530,3 +530,22 @@ drdi() {
 }
 
 
+# Function to count number of files in subdirs of cwd
+count_files_in_subdirs() {
+    # Loop through each subdirectory in the current directory
+    for dir in */; do
+        # Check if it's actually a directory
+        if [[ -d "$dir" ]]; then
+            # Count the number of files in the subdirectory
+            file_count=$(find "$dir" -maxdepth 1 -type f | wc -l)
+    
+            # Remove the trailing slash from the directory name for cleaner output
+            dir_name="${dir%/}"
+    
+            # Print the directory name and the file count
+            echo "$dir_name: $file_count files"
+        fi
+    done
+}
+
+
