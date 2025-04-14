@@ -1,0 +1,24 @@
+" Show trailing whitespace and spaces used for indentation
+set list
+set listchars=tab:>-
+
+" Convert tabs to spaces
+set expandtab
+
+" Set tab width to 4 spaces
+set tabstop=4
+set shiftwidth=4
+
+" Use the :retab command to replace the tabs in an existing file to 4 spaces
+retab
+
+" Always show line numbers
+set number 
+
+" Highlight all search matches
+:set hlsearch
+
+" Automatically change the current working directory to the directory where
+" the file you are editing is in.
+" set autochdir
+
