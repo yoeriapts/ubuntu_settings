@@ -483,15 +483,52 @@ function newest_file_per_dir() {
     ' sh {} \;
 }
 
-alias newest_files='newest_file_per_dir'
-
-
 # Function to find most recent file in a dir-tree
 function newest_file() {
     local dir="$1"
     find "$dir" -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-
 }
 
+# Function to find the N newest files in a directory
+#
+# Arguments:
+#   $1: The directory to search in.
+#   $2: (Optional) The number of newest files to list. Defaults to 1.
+#
+# Output:
+#   Prints the paths of the N newest files, one per line.
+function newest_files() {
+    local dir="$1"      # The directory to search
+    local count_arg="$2" # The provided count argument (might be empty)
+    local count         # The final count to use
+
+    # Check if the directory argument is provided and is a directory
+    if [[ -z "$dir" || ! -d "$dir" ]]; then
+        echo "Error: Please provide a valid directory as the first argument." >&2
+        return 1
+    fi
+
+    # Set the count: use the provided argument or default to 1
+    if [[ -z "$count_arg" ]]; then
+        # If the second argument is empty, default to 1
+        count=1
+    else
+        # If the second argument is provided, validate it
+        if ! [[ "$count_arg" =~ ^[1-9][0-9]*$ ]]; then
+            echo "Error: The second argument (count) must be a positive integer." >&2
+            return 1
+        fi
+        # Use the validated provided count
+        count="$count_arg"
+    fi
+
+    # Find files (-type f) in the specified directory ($dir), recursively (intrinsic)
+    # Print modification time (%T@) followed by a space and the path (%p\n)
+    # Sort numerically in reverse order (-nr) based on the timestamp
+    # Take the top 'count' lines (-n "$count")
+    # Cut away the timestamp and the first space (-d" " -f2-), leaving only the file path
+    find "$dir" -type f -printf "%T@ %p\n" | sort -nr | head -n "$count" | cut -d" " -f2- | xargs ls -l
+}
 
 # Wrapper function for the ranger Terminal File Manager
 # from https://github.com/ranger/ranger/wiki/Integration-with-other-programs#bash-compatible-shells-1
