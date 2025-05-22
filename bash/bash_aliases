@@ -585,4 +585,76 @@ count_files_in_subdirs() {
     done
 }
 
+# Function to open multiple files in gvim tabs at specific lines.
+# Arguments should be in the format: filename:linenumber:
+# Example: gvimt script.py:50: notes.txt:10: "my config.yaml:5:"
+gvimt() {
+  # --- Basic Input Validation ---
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: gvimt filename1:line1: [filename2:line2:] ..." >&2
+    echo "Error: No arguments provided." >&2
+    return 1 # Indicate error
+  fi
+
+  # --- Initialize Variables ---
+  # Use arrays to correctly handle filenames/arguments with spaces or special chars
+  local files=()      # Array to store the filenames
+  local cmd_args=()   # Array to store the command arguments (-c '...') for gvim
+  local counter=0     # To know which file is the first one
+  # Regex to match and capture 'filename:number:' format.
+  # Allows any characters in filename except colon right before number.
+  local file_pattern="^(.+):([0-9]+):$"
+
+  # --- Process Each Argument ---
+  for arg in "$@"; do
+    # Check if the argument matches the required format
+    if [[ "$arg" =~ $file_pattern ]]; then
+      # Extract the filename (group 1) and line number (group 2)
+      local filename="${BASH_REMATCH[1]}"
+      local linenumber="${BASH_REMATCH[2]}"
+
+      # Add the extracted filename to the 'files' array
+      files+=("$filename")
+
+      # Construct the appropriate '-c' command argument
+      if (( counter == 0 )); then
+        # For the first file, use 'tabfirst' to go to the tab and '| N' to go to line N
+        cmd_args+=("-c" "tabfirst | $linenumber")
+      else
+        # For subsequent files, use 'tabnext' to switch tabs first
+        cmd_args+=("-c" "tabnext | $linenumber")
+      fi
+      # Increment the file counter
+      ((counter++))
+    else
+      # Print a warning to standard error if an argument doesn't match
+      echo "Warning: Skipping invalid argument format '$arg'. Expected 'filename:linenumber:'" >&2
+      continue # Skip to the next argument
+    fi
+  done
+
+  # --- Execute gvim if Valid Files Found ---
+  if (( ${#files[@]} > 0 )); then
+    # If we processed at least one valid file argument:
+    # Add the final command to ensure the *first* tab is selected at the end
+    cmd_args+=("-c" "tabfirst")
+
+    # Execute gvim:
+    # -p : Open arguments in tabs
+    # "${files[@]}" : Pass the filenames correctly (handles spaces etc.)
+    # "${cmd_args[@]}" : Pass the '-c' commands correctly
+    # Optional: Uncomment the next line to see the command before execution
+    # echo "Executing: gvim -p ${files[@]} ${cmd_args[@]}"
+    gvim -p "${files[@]}" "${cmd_args[@]}"
+
+    return 0 # Indicate success
+  else
+    # If no valid file arguments were found after checking all input
+    echo "Error: No valid file arguments found to process." >&2
+    return 1 # Indicate error
+  fi
+}
+
+# Optional: You can create a shorter alias if you like
+alias gvt=gvimt
 
