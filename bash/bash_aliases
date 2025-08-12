@@ -489,6 +489,12 @@ function newest_file() {
     find "$dir" -type f -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-
 }
 
+# Function to find the oldest file in a dir-tree
+function oldest_file() {
+    local dir="$1"
+    find "$dir" -type f -printf "%T@ %p\n" | sort -n | head -n 1 | cut -d" " -f2-
+}
+
 # Function to find the N newest files in a directory
 #
 # Arguments:
@@ -566,6 +572,11 @@ drdi() {
   fi
 }
 
+# Funtion to print last log line of each running container
+lastlogline () 
+{ 
+    docker ps -q | xargs -I'{}' sh -c 'docker inspect {} -f "  -- {{.Name}}" && docker logs --tail 1 {}'
+}
 
 # Function to count number of files in subdirs of cwd
 count_files_in_subdirs() {
