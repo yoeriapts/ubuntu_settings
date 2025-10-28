@@ -115,7 +115,9 @@ alias pjson='function _pjson(){ python -m json.tool $1 | pygmentize -l json; }; 
 alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
 
 # grep
-alias rgrep='grep -E -R -I -n' # grep recursive, don't match binary files, print line numbers
+
+alias rgrep='grep --exclude-dir=.{?,??}* -E -R -I -n' # grep recursive, don't match binary files, print line numbers
+
 alias cgrep='find . \( -name \*\.h -o -name \*\.hpp -o -name \*\.cc -o -name \*\.cpp -o -name \*\.cxx -o -name \*\.c \) -a -type f -print0 | xargs -0 grep -E -n'
 alias hgrep='find . \( -name \*\.h -o -name \*\.hpp \) -a -type f -print0 | xargs -0 grep -E -n'
 #alias pygrep='find . \( -name \*\.py \) -a -type f -print0 | xargs -0 grep -E -n'
