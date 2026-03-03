@@ -106,7 +106,7 @@ alias gis='git status'
 alias gib='git branch'
 alias gitnp='git --no-pager'
 alias gil='git log --name-status'
-alias gilo='git log --oneline'
+alias gilo='git log --format="%C(auto)%h %C(magenta)%an%C(reset) %s"'
 
 # json 
 # pretyy-print json
@@ -671,3 +671,34 @@ gvimt() {
 # Optional: You can create a shorter alias if you like
 alias gvt=gvimt
 
+#
+# PyTest related
+#
+run_tests() {
+    # 1. Variables and Paths
+    local now=$(date +%Y%m%d_%H%M%S)
+    local basename="run_${now}"
+    local report_dir="$HOME/vc_tmp/test_reports"
+    local test_target="${1:-tests}"
+    
+    local html_file="${report_dir}/${basename}.html"
+    local log_file="${report_dir}/${basename}.log"
+    
+    # 2. Setup
+    mkdir -p "$report_dir"
+
+    echo "🧪 Testing target: $test_target"
+    echo "🔍 Logs will be saved to: $log_file"
+    echo "📊 HTML Report will be saved to: $html_file"
+
+    # 3. Execution
+    pytest --color=yes "$test_target" \
+        --html="$html_file" \
+        --self-contained-html \
+        2>&1 | tee "$log_file"
+
+    # 4. Summary Output
+    echo -e "\n✨ --- Test Run Complete --- ✨"
+    echo "📊 HTML Report: $html_file"
+    echo "📝 Log File:    $log_file"
+}
