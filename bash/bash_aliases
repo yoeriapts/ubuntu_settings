@@ -702,3 +702,47 @@ run_tests() {
     echo "📊 HTML Report: $html_file"
     echo "📝 Log File:    $log_file"
 }
+
+
+#
+# Sync the dates used in filenames to the date mentioned in the containing directory
+#
+# to run it: Navigate to the parent folder and simply type:
+#
+# sync_file_dates
+#
+# Target a specific path: If you are in a different folder, you can pass the path:
+#
+# sync_file_dates /path/to/your/data
+#
+sync_file_dates() {
+    # Check if a directory path was provided, otherwise use current directory
+    local search_dir="${1:-.}"
+
+    # Loop through every item in the search directory
+    for dir in "$search_dir"/*/; do
+        # Remove trailing slash to get the clean directory name
+        local dir_name=$(basename "$dir")
+        
+        # Regex to check if the directory name looks like a date (YYYY-MM-DD)
+        if [[ $dir_name =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+            echo "Processing directory: $dir_name"
+            
+            # Loop through files inside that directory
+            for file in "$dir"*; do
+                # Get just the filename
+                local filename=$(basename "$file")
+                
+                # Replace the first YYYY-MM-DD pattern found in the filename 
+                # with the directory's date name
+                local new_filename=$(echo "$filename" | sed -E "s/[0-9]{4}-[0-9]{2}-[0-9]{2}/$dir_name/")
+                
+                # Only rename if the name actually changed
+                if [ "$filename" != "$new_filename" ]; then
+                    mv "$dir$filename" "$dir$new_filename"
+                    echo "  Renamed: $filename -> $new_filename"
+                fi
+            done
+        fi
+    done
+}
