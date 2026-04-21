@@ -28,7 +28,7 @@ $ ln -s ~/ubuntu_settings/bash/bash_extras .bash_extras
 ```
 and add the following to `.bashrc` 
 ```bash
-# bash_aliases
+# bash_extras
 if [ -f ~/.bash_extras ]; then
     . ~/.bash_extras
 fi
